@@ -8,6 +8,9 @@ import {Helmet, HelmetProvider} from "react-helmet-async";
 
 const theme = createTheme({
     direction: 'rtl',
+    typography: {
+        fontFamily: 'Vazirmatn'
+    }
 });
 
 // Create rtl cache
@@ -28,7 +31,7 @@ function App() {
                     <Helmet>
                         <title>test</title>
                     </Helmet>
-                    <Button variant={'contained'}>test</Button>
+                    <Button variant={'contained'}>کلیک کن</Button>
                 </HelmetProvider>
             </ThemeProvider>
         </CacheProvider>
