@@ -1,18 +1,12 @@
 import './App.css'
-import {createTheme, ThemeProvider} from "@mui/material";
+import {ThemeProvider} from "@mui/material";
 import {CacheProvider} from '@emotion/react';
 import createCache from '@emotion/cache';
 import {prefixer} from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
 import {Helmet, HelmetProvider} from "react-helmet-async";
 import Header from "./components/ui/Header.jsx";
-
-const theme = createTheme({
-    direction: 'rtl',
-    typography: {
-        fontFamily: 'Vazirmatn'
-    }
-});
+import {theme} from "./components/ui/theme.js";
 
 // Create rtl cache
 const cacheRtl = createCache({
@@ -27,6 +21,10 @@ function Rtl(props) {
 function App() {
     return (
         <CacheProvider value={cacheRtl}>
+            {/*we can define multiple themes
+             because theme is object so user
+              can easily can easily switch
+               between themes*/}
             <ThemeProvider theme={theme}>
                 <HelmetProvider>
                     <Helmet>

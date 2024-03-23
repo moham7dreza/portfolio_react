@@ -26,7 +26,7 @@ const Header = () => {
             <ElevationScroll>
                 <AppBar>
                     <Toolbar>
-                        <Button variant='primary'>
+                        <Button variant='contained' color='primary'>
                             کلیک کن
                         </Button>
                     </Toolbar>
