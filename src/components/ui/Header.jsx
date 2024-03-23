@@ -1,7 +1,10 @@
-import {AppBar, Box, Button, Container, Slider, styled, Toolbar, useScrollTrigger} from "@mui/material";
+import {AppBar, Box, Button, Container, IconButton, Slider, styled, Toolbar, useScrollTrigger} from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
 import logo from './../../assets/react.svg'
+import {MdOutlinePhotoCamera} from "react-icons/md";
+import {FiSend} from "react-icons/fi";
+import {LoadingButton} from "@mui/lab";
 
 const Header = () => {
 
@@ -41,10 +44,10 @@ const Header = () => {
     return (
         <>
             <ElevationScroll>
-                {/*contents are hides behind of appbar we can fix it with static postition*/}
+                {/*contents are hides behind of appbar we can fix it with static position*/}
                 <AppBar position={'static'}>
                     {/*remove default padding from left and right with disableGutters*/}
-                    <Toolbar>
+                    <Toolbar disableGutters>
                         {/*<Typography variant='h3'>وب سایت شخصی</Typography>*/}
                         {/*<CustomizedButton variant='dashed' color='secondary'>*/}
                         {/*    کلیک کن*/}
@@ -58,6 +61,24 @@ const Header = () => {
                         {/*    }*/}
                         {/*`}>test</Button>*/}
                         <img src={logo} alt="test" style={{width: '3rem'}}/>
+                        <Button variant={'outlined'}
+                            // style={{color: 'black'}}
+                            // we can also define custom colors in theme
+                                color={'success'}
+                                size={'large '}
+                                onClick={() => alert('test')}>
+                            test
+                        </Button>
+                        <IconButton color={'error'} aria-label={'upload photo'} component={'label'}>
+                            <input type="file" accept={'image/*'} hidden/>
+                            <MdOutlinePhotoCamera/>
+                        </IconButton>
+                        <Button variant={'contained'} color={'error'} startIcon={<FiSend/>}>
+                            send
+                        </Button>
+                        <LoadingButton loading variant="outlined">
+                            Submit
+                        </LoadingButton>
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
