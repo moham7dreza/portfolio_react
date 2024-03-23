@@ -1,4 +1,15 @@
-import {AppBar, Box, Button, Container, IconButton, Slider, styled, Toolbar, useScrollTrigger} from "@mui/material";
+import {
+    AppBar,
+    Box,
+    Button,
+    Container,
+    IconButton,
+    Slider,
+    styled,
+    Toolbar,
+    Typography,
+    useScrollTrigger
+} from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
 import logo from './../../assets/react.svg'
@@ -48,7 +59,10 @@ const Header = () => {
                 <AppBar position={'static'}>
                     {/*remove default padding from left and right with disableGutters*/}
                     <Toolbar disableGutters>
-                        {/*<Typography variant='h3'>وب سایت شخصی</Typography>*/}
+                        {/*sx property similar to style property but only works with mui components*/}
+                        {/*inline styles in most important so h4 is applied*/}
+                        {/*sx is a shortcut for defining custom style which has access to the theme*/}
+                        <Typography variant='h3' sx={{marginRight: '2rem', typography: 'h4'}}>وب سایت شخصی</Typography>
                         {/*<CustomizedButton variant='dashed' color='secondary'>*/}
                         {/*    کلیک کن*/}
                         {/*</CustomizedButton>*/}
@@ -79,6 +93,22 @@ const Header = () => {
                         <LoadingButton loading variant="outlined">
                             Submit
                         </LoadingButton>
+                        <Box sx={{
+                            bgcolor: 'primary.main',
+                            borderColor: 'black',
+                            border: 1,
+                            boxShadow: 1,
+                            borderRadius: 2,
+                            p: 2,
+                            maxWidth: 300,
+                            gap: 2,
+                        }}>
+                            <Button color={'success'} sx={{
+                                border: 1,
+                                borderColor: 'primary.main',
+                                width: 1 / 2,
+                            }}>test</Button>
+                        </Box>
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
