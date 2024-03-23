@@ -1,6 +1,7 @@
-import {AppBar, Box, Button, Container, Toolbar, Typography, useScrollTrigger} from "@mui/material";
+import {AppBar, Box, Button, Container, Slider, styled, Toolbar, Typography, useScrollTrigger} from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
+import {css} from "@emotion/react"
 
 const Header = () => {
 
@@ -21,15 +22,39 @@ const Header = () => {
         window: PropTypes.func,
     };
 
+    const CustomizedSlider = styled(Slider)`
+        color: #20b2aa;
+
+        :hover {
+            color: #2e8b57;
+        }
+    `;
+
+    const CustomizedButton = styled(Button)`
+        color: lime;
+
+        :hover {
+            color: blue;
+        }
+    `;
+
     return (
         <>
             <ElevationScroll>
                 <AppBar>
                     <Toolbar>
                         <Typography variant='h3'>وب سایت شخصی</Typography>
-                        <Button variant='dashed' color='secondary'>
+                        <CustomizedButton variant='dashed' color='secondary'>
                             کلیک کن
-                        </Button>
+                        </CustomizedButton>
+                        {/*<CustomizedSlider defaultValue={30}/>*/}
+                        <Button css={css`
+                            color: red;
+
+                            :hover {
+                                color: gold;
+                            }
+                        `}>test</Button>
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
