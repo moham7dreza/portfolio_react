@@ -12,6 +12,10 @@ export const theme = createTheme({
         },
     },
     typography: {
-        fontFamily: 'Vazirmatn'
+        fontFamily: 'Vazirmatn',
+        button: {
+            fontFamily: 'tahoma',
+            fontSize: 16,
+        }
     }
 });

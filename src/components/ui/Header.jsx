@@ -1,4 +1,4 @@
-import {AppBar, Box, Button, Container, Toolbar, useScrollTrigger} from "@mui/material";
+import {AppBar, Box, Button, Container, Toolbar, Typography, useScrollTrigger} from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
 
@@ -26,6 +26,7 @@ const Header = () => {
             <ElevationScroll>
                 <AppBar>
                     <Toolbar>
+                        <Typography variant='h3'>وب سایت شخصی</Typography>
                         <Button variant='contained' color='primary'>
                             کلیک کن
                         </Button>

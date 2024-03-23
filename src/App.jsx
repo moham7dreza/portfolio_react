@@ -20,11 +20,8 @@ function Rtl(props) {
 
 function App() {
     return (
-        <CacheProvider value={cacheRtl}>
-            {/*we can define multiple themes
-             because theme is object so user
-              can easily can easily switch
-               between themes*/}
+        <Rtl>
+            {/*we can define multiple themes because theme is object so user can easily can easily switch between themes*/}
             <ThemeProvider theme={theme}>
                 <HelmetProvider>
                     <Helmet>
@@ -33,7 +30,7 @@ function App() {
                     <Header/>
                 </HelmetProvider>
             </ThemeProvider>
-        </CacheProvider>
+        </Rtl>
     )
 }
 
