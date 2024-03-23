@@ -27,7 +27,7 @@ const Header = () => {
                 <AppBar>
                     <Toolbar>
                         <Typography variant='h3'>وب سایت شخصی</Typography>
-                        <Button variant='contained' color='primary'>
+                        <Button variant='dashed' color='secondary'>
                             کلیک کن
                         </Button>
                     </Toolbar>

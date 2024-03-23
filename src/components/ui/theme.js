@@ -1,9 +1,10 @@
 import {createTheme} from "@mui/material";
+import {blue, red} from "@mui/material/colors";
 
 export const theme = createTheme({
     direction: 'rtl',
     palette: {
-        mode: 'dark',
+        mode: 'light',
         primary: {
             main: '#8be9fd'
         },
@@ -16,6 +17,37 @@ export const theme = createTheme({
         button: {
             fontFamily: 'tahoma',
             fontSize: 16,
+        }
+    },
+    components: {
+        MuiButtonBase: {
+            defaultProps: {
+                disableRipple: false
+            }
+        },
+        MuiButton: {
+            variants: [
+                {
+                    props: {variant: 'dashed'},
+                    style: {
+                        textTransform: 'none',
+                        border: `2px dashed ${blue[500]}`,
+                    },
+                },
+                {
+                    props: {variant: 'dashed', color: 'secondary'},
+                    style: {
+                        border: `4px dashed ${red[500]}`,
+                    },
+                },
+            ],
+            styleOverrides: {
+                root: {
+                    fontSize: '1.2rem',
+                    fontFamily: 'Vazirmatn',
+                    padding: '.6rem',
+                }
+            }
         }
     }
 });
