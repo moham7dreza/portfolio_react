@@ -1,7 +1,7 @@
-import {AppBar, Box, Button, Container, Slider, styled, Toolbar, Typography, useScrollTrigger} from "@mui/material";
+import {AppBar, Box, Button, Container, Slider, styled, Toolbar, useScrollTrigger} from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
-import {css} from "@emotion/react"
+import logo from './../../assets/react.svg'
 
 const Header = () => {
 
@@ -41,20 +41,23 @@ const Header = () => {
     return (
         <>
             <ElevationScroll>
-                <AppBar>
+                {/*contents are hides behind of appbar we can fix it with static postition*/}
+                <AppBar position={'static'}>
+                    {/*remove default padding from left and right with disableGutters*/}
                     <Toolbar>
-                        <Typography variant='h3'>وب سایت شخصی</Typography>
-                        <CustomizedButton variant='dashed' color='secondary'>
-                            کلیک کن
-                        </CustomizedButton>
+                        {/*<Typography variant='h3'>وب سایت شخصی</Typography>*/}
+                        {/*<CustomizedButton variant='dashed' color='secondary'>*/}
+                        {/*    کلیک کن*/}
+                        {/*</CustomizedButton>*/}
                         {/*<CustomizedSlider defaultValue={30}/>*/}
-                        <Button css={css`
-                            color: red;
+                        {/*<Button css={css`*/}
+                        {/*    color: red;*/}
 
-                            :hover {
-                                color: gold;
-                            }
-                        `}>test</Button>
+                        {/*    :hover {*/}
+                        {/*        color: gold;*/}
+                        {/*    }*/}
+                        {/*`}>test</Button>*/}
+                        <img src={logo} alt="test" style={{width: '3rem'}}/>
                     </Toolbar>
                 </AppBar>
             </ElevationScroll>
