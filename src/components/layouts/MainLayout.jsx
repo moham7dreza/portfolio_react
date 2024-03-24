@@ -17,12 +17,12 @@ export const MainLayout = ({children}) => {
                         {/*Grid system*/}
                         <Grid2 container sx={{height: "100vh"}}>
                             {/*sidebar*/}
-                            <Grid2 xs={2}>
-                                <Typography variant={'h5'}>qwdq</Typography>
+                            <Grid2 xs={0} sm={0} md={3} lg={3} xl={3}>
+                                <Typography variant='h5' sx={{backgroundColor: 'red'}}>sidebar</Typography>
                             </Grid2>
                             {/*main content*/}
-                            <Grid2 xs={10}>
-                                <Typography variant={'h5'}>qwdq</Typography>
+                            <Grid2 xs={12} sm={12} md={9} lg={9} xl={9}>
+                                <Typography variant='h5' sx={{backgroundColor: 'green'}}>content</Typography>
                             </Grid2>
                         </Grid2>
                         {children}
