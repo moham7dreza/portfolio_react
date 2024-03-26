@@ -11,7 +11,7 @@ export const Sidebar = () => {
                 <Box sx={{justifyContent: 'center', textAlign: 'center', mt: 2}}>
                     {/*can be dynamically down ex according to state*/}
                     <Hidden mdDown={true}>
-                        <Avatar src={avatar} sx={{height: 200, width: 200, m: '0 auto'}}/>
+                        <Avatar alt='avatar' src={avatar} sx={{height: 200, width: 200, m: '0 auto'}}/>
                     </Hidden>
                     <Typography variant='h6' color='whitesmoke'>sidebar</Typography>
                     <Typography variant='caption' color='whitesmoke'>sidebar</Typography>
