@@ -1,7 +1,7 @@
 import './App.css'
 import {MainLayout} from "./components/layouts/MainLayout.jsx";
-import {Sidebar} from "./components/ui/Sidebar.jsx";
-import {ContentContainer} from "./components/ui/ContentContainer.jsx";
+import {Sidebar} from "./components/Sidebar.jsx";
+import {ContentContainer} from "./components/ContentContainer.jsx";
 import {useState} from "react";
 import {TabPanel} from "./components/tabs/TabPanel.jsx";
 import {Typography} from "@mui/material";
