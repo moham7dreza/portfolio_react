@@ -12,7 +12,7 @@ export const MainLayout = ({children}) => {
                 <ThemeProvider theme={theme}>
                     <HelmetProvider>
                         <Helmet>
-                            <title>test</title>
+                            <title>main layout</title>
                         </Helmet>
                         {/*Grid system*/}
                         <Grid container sx={{height: "100vh"}}>

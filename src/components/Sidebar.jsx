@@ -14,6 +14,7 @@ import {
 } from "@mui/icons-material";
 
 export const Sidebar = ({value, handleChange}) => {
+    // we setup unique id for each tab
     const tabProps = (index) => {
         return {
             id: `sidebar-tab-${index}`,
@@ -32,8 +33,10 @@ export const Sidebar = ({value, handleChange}) => {
                     <Typography variant='h6' color='whitesmoke'>sidebar</Typography>
                     <Typography variant='caption' color='whitesmoke'>sidebar</Typography>
                     <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
+                    {/*parent tab gets value and handle change*/}
                     <Tabs value={value} onChange={handleChange} orientation='vertical' variant={'scrollable'}
                           scrollButtons={'auto'} allowScrollButtonsMobile>
+                        {/*each tab has unique index*/}
                         <Tab {...tabProps(0)} label={'home page'} icon={<HomeRounded/>} iconPosition={'start'}/>
                         <Tab {...tabProps(1)} label={'about me'} icon={<FaceRounded/>} iconPosition={'start'}/>
                         <Tab {...tabProps(2)} label={'my resume'} icon={<TextSnippetRounded/>} iconPosition={'start'}/>
