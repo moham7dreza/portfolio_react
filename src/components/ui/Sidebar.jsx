@@ -14,6 +14,12 @@ import {
 } from "@mui/icons-material";
 
 export const Sidebar = () => {
+    const tabProps = (index) => {
+        return {
+            id: `sidebar-tab-${index}`,
+            "aria-controls": `tab-panel-${index}`,
+        }
+    }
     return (
         <>
             {/*sidebar*/}
@@ -27,12 +33,13 @@ export const Sidebar = () => {
                     <Typography variant='caption' color='whitesmoke'>sidebar</Typography>
                     <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
                     <Tabs orientation='vertical' variant={'scrollable'} scrollButtons={'auto'} allowScrollButtonsMobile>
-                        <Tab label={'home page'} icon={<HomeRounded/>} iconPosition={'start'}/>
-                        <Tab label={'about me'} icon={<FaceRounded/>} iconPosition={'start'}/>
-                        <Tab label={'my resume'} icon={<TextSnippetRounded/>} iconPosition={'start'}/>
-                        <Tab label={'my projects'} icon={<TerminalRounded/>} iconPosition={'start'}/>
-                        <Tab label={'comments'} icon={<MessageRounded/>} iconPosition={'start'}/>
-                        <Tab label={'contact'} icon={<ConnectWithoutContactRounded/>} iconPosition={'start'}/>
+                        <Tab {...tabProps(0)} label={'home page'} icon={<HomeRounded/>} iconPosition={'start'}/>
+                        <Tab {...tabProps(1)} label={'about me'} icon={<FaceRounded/>} iconPosition={'start'}/>
+                        <Tab {...tabProps(2)} label={'my resume'} icon={<TextSnippetRounded/>} iconPosition={'start'}/>
+                        <Tab {...tabProps(3)} label={'my projects'} icon={<TerminalRounded/>} iconPosition={'start'}/>
+                        <Tab {...tabProps(4)} label={'comments'} icon={<MessageRounded/>} iconPosition={'start'}/>
+                        <Tab {...tabProps(5)} label={'contact'} icon={<ConnectWithoutContactRounded/>}
+                             iconPosition={'start'}/>
                     </Tabs>
                     <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
                     <Box sx={{flexGrow: 1, display: 'flex', justifyContent: 'center', alignItems: 'end', height: 100}}>
