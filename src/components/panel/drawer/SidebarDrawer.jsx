@@ -1,7 +1,10 @@
 import {Drawer} from "@mui/material";
 import {SidebarContent} from "../sidebar/index.js";
+import {useContext} from "react";
+import MainContext from "../../../context";
 
-const SidebarDrawer = ({value, handleChange, drawerOpen, setDrawerOpen}) => {
+const SidebarDrawer = () => {
+    const {drawerOpen, setDrawerOpen} = useContext(MainContext)
     return (
         <>
             {/*if we use drawer to toggle sidebar it has not inherited of grid system width because of grid have many breakpoints*/}
@@ -14,7 +17,7 @@ const SidebarDrawer = ({value, handleChange, drawerOpen, setDrawerOpen}) => {
             <Drawer sx={{"& .MuiDrawer-paper": {width: 320}, display: {md: 'none'}}} open={drawerOpen}
                     variant={'temporary'}
                     onClose={() => setDrawerOpen(false)}>
-                <SidebarContent value={value} handleChange={handleChange} setDrawerOpen={setDrawerOpen}/>
+                <SidebarContent/>
             </Drawer>
         </>
     )

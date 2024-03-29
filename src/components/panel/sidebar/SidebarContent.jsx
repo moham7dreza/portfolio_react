@@ -2,7 +2,7 @@ import {Box, Divider} from "@mui/material";
 import {grey} from "@mui/material/colors";
 import {SidebarFooter, SidebarHeader, SidebarTabs} from ".";
 
-const SidebarContent = ({value, handleChange, setDrawerOpen}) => {
+const SidebarContent = () => {
     return (
         <>
             <Box sx={{justifyContent: 'center', textAlign: 'center', mt: 2}}>
@@ -10,7 +10,7 @@ const SidebarContent = ({value, handleChange, setDrawerOpen}) => {
 
                 <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
 
-                <SidebarTabs value={value} handleChange={handleChange} setDrawerOpen={setDrawerOpen}/>
+                <SidebarTabs/>
 
                 <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
 
