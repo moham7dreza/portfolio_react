@@ -33,14 +33,50 @@ export const DrawerContent = ({value, handleChange}) => {
                 <Tabs value={value} onChange={handleChange} orientation='vertical' variant={'scrollable'}
                       scrollButtons={'auto'} allowScrollButtonsMobile>
                     {/*each tab has unique index*/}
-                    <Tab {...tabProps(0)} label={'home page'} icon={<HomeRounded/>} iconPosition={'start'}/>
-                    <Tab {...tabProps(1)} label={'about me'} icon={<FaceRounded/>} iconPosition={'start'}/>
-                    <Tab {...tabProps(2)} label={'my resume'} icon={<TextSnippetRounded/>}
+                    <Tab sx={{
+                        "& .MuiTab-root": {
+                            minHeight: 50,
+                            backgroundColor: grey[800],
+                            borderRadius: 2
+                        }
+                    }} {...tabProps(0)} label={'home page'} icon={<HomeRounded/>} iconPosition={'start'}/>
+                    <Tab sx={{
+                        "& .MuiTab-root": {
+                            minHeight: 50,
+                            backgroundColor: grey[800],
+                            borderRadius: 2
+                        }
+                    }} {...tabProps(1)} label={'about me'} icon={<FaceRounded/>} iconPosition={'start'}/>
+                    <Tab sx={{
+                        "& .MuiTab-root": {
+                            minHeight: 50,
+                            backgroundColor: grey[800],
+                            borderRadius: 2
+                        }
+                    }} {...tabProps(2)} label={'my resume'} icon={<TextSnippetRounded/>}
                          iconPosition={'start'}/>
-                    <Tab {...tabProps(3)} label={'my projects'} icon={<TerminalRounded/>}
+                    <Tab sx={{
+                        "& .MuiTab-root": {
+                            minHeight: 50,
+                            backgroundColor: grey[800],
+                            borderRadius: 2
+                        }
+                    }} {...tabProps(3)} label={'my projects'} icon={<TerminalRounded/>}
                          iconPosition={'start'}/>
-                    <Tab {...tabProps(4)} label={'comments'} icon={<MessageRounded/>} iconPosition={'start'}/>
-                    <Tab {...tabProps(5)} label={'contact'} icon={<ConnectWithoutContactRounded/>}
+                    <Tab sx={{
+                        "& .MuiTab-root": {
+                            minHeight: 50,
+                            backgroundColor: grey[800],
+                            borderRadius: 2
+                        }
+                    }} {...tabProps(4)} label={'comments'} icon={<MessageRounded/>} iconPosition={'start'}/>
+                    <Tab sx={{
+                        "& .MuiTab-root": {
+                            minHeight: 50,
+                            backgroundColor: grey[800],
+                            borderRadius: 2
+                        }
+                    }} {...tabProps(5)} label={'contact'} icon={<ConnectWithoutContactRounded/>}
                          iconPosition={'start'}/>
                 </Tabs>
                 <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
