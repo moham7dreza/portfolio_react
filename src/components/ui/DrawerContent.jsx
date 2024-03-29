@@ -1,4 +1,4 @@
-import {Avatar, Box, Divider, Hidden, Tab, Tabs, Typography} from "@mui/material";
+import {Avatar, Box, Divider, Tab, Tabs, Typography} from "@mui/material";
 import avatar from "../../assets/avatar.png";
 import {grey} from "@mui/material/colors";
 import {
@@ -24,9 +24,8 @@ export const DrawerContent = ({value, handleChange}) => {
         <>
             <Box sx={{justifyContent: 'center', textAlign: 'center', mt: 2}}>
                 {/*can be dynamically down ex according to state*/}
-                <Hidden mdDown={true}>
-                    <Avatar alt='avatar' src={avatar} sx={{height: 200, width: 200, m: '0 auto'}}/>
-                </Hidden>
+                <Avatar alt='avatar' src={avatar}
+                        sx={{height: 200, width: 200, m: '0 auto', display: {xs: 'none', sm: 'none', md: 'block'}}}/>
                 <Typography variant='h6' color='whitesmoke'>sidebar</Typography>
                 <Typography variant='caption' color='whitesmoke'>sidebar</Typography>
                 <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
