@@ -1,10 +1,11 @@
-import './App.css'
-import {MainLayout} from "./templates/layouts/MainLayout.jsx";
-import {Sidebar} from "./components/panel/Sidebar.jsx";
-import {ContentContainer} from "./components/panel/ContentContainer.jsx";
+import '../App.css'
+import {MainLayout} from "../templates/layouts/MainLayout.jsx";
+import {Sidebar} from "../components/panel/sidebar/Sidebar.jsx";
+import {ContentContainer} from "./panel/ContentContainer.jsx";
 import {useState} from "react";
-import {TabPanel} from "./components/panel/tabs/TabPanel.jsx";
+import {TabPanel} from "../components/panel/TabPanel.jsx";
 import {Typography} from "@mui/material";
+import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 
 function App() {
     const [value, setValue] = useState(0)
@@ -18,7 +19,9 @@ function App() {
             {/*according to specific route we can render specific layout*/}
             <MainLayout>
                 {/*value first in sending to the sidebar tabs and changing state is called in sidebar tabs*/}
-                <Sidebar value={value} handleChange={handleChange}/>
+                <SidebarContainer>
+                    <Sidebar value={value} handleChange={handleChange}/>
+                </SidebarContainer>
                 <ContentContainer>
                     {/*tab panel scenario*/}
                     {/*we use value state and define some unique indices for each tab that user can change them so the value is updated*/}

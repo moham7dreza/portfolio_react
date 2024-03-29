@@ -1,16 +1,15 @@
-import {Avatar, Box, Divider, Tab, Tabs, Typography} from "@mui/material";
-import avatar from "../../assets/images/avatar.png";
+import {Box, Divider, Tab, Tabs} from "@mui/material";
 import {grey} from "@mui/material/colors";
 import {
     ConnectWithoutContactRounded,
-    CopyrightRounded,
     FaceRounded,
-    FavoriteRounded,
     HomeRounded,
     MessageRounded,
     TerminalRounded,
     TextSnippetRounded
 } from "@mui/icons-material";
+import {SidebarHeader} from "./sidebar/SidebarHeader.jsx";
+import {SidebarFooter} from "./sidebar/SidebarFooter.jsx";
 
 export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
     // we setup unique id for each tab
@@ -23,11 +22,7 @@ export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
     return (
         <>
             <Box sx={{justifyContent: 'center', textAlign: 'center', mt: 2}}>
-                {/*can be dynamically down ex according to state*/}
-                <Avatar alt='avatar' src={avatar}
-                        sx={{height: 200, width: 200, m: '0 auto', display: {xs: 'none', sm: 'none', md: 'block'}}}/>
-                <Typography variant='h6' color='whitesmoke'>sidebar</Typography>
-                <Typography variant='caption' color='whitesmoke'>sidebar</Typography>
+                <SidebarHeader/>
                 <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
                 {/*parent tab gets value and handle change*/}
                 <Tabs value={value} onChange={handleChange} orientation='vertical' variant={'scrollable'}
@@ -86,43 +81,7 @@ export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
                          iconPosition={'start'}/>
                 </Tabs>
                 <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
-                <Box sx={{
-                    flexGrow: 1,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'end',
-                    height: 100
-                }}>
-                    <Typography variant='subtitle2' color={'whitesmoke'}
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    flexDirection: 'row-reverse',
-                                    gap: 1
-                                }}>
-                        designed
-                        <FavoriteRounded sx={{color: 'tomato', height: 20}}/>
-                    </Typography>
-                </Box>
-                <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>
-                <Box sx={{
-                    flexGrow: 1,
-                    display: 'flex',
-                    justifyContent: 'center',
-                    alignItems: 'end',
-                    height: 100
-                }}>
-                    <Typography variant='subtitle2' color={'whitesmoke'}
-                                sx={{
-                                    display: 'flex',
-                                    alignItems: 'center',
-                                    flexDirection: 'row-reverse',
-                                    gap: 1
-                                }}>
-                        copyright 2024
-                        <CopyrightRounded sx={{color: 'green', height: 20}}/>
-                    </Typography>
-                </Box>
+                <SidebarFooter/>
             </Box>
         </>
     )
