@@ -33,7 +33,8 @@ export const Sidebar = ({value, handleChange}) => {
                 {/*use drawer and show it below md*/}
                 {/*use sx with custom css to modify drawer width*/}
                 {/*use temporary variant to get shadow in content section which means drawer can be hidden*/}
-                <Drawer sx={{"& .MuiDrawer-paper": {width: 320}}} open={drawerOpen} variant={'temporary'}
+                <Drawer sx={{"& .MuiDrawer-paper": {width: 320}, display: {md: 'none'}}} open={drawerOpen}
+                        variant={'temporary'}
                         onClose={() => setDrawerOpen(false)}>
                     <DrawerContent value={value} handleChange={handleChange}/>
                 </Drawer>
