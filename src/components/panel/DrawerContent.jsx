@@ -1,5 +1,5 @@
 import {Avatar, Box, Divider, Tab, Tabs, Typography} from "@mui/material";
-import avatar from "../../assets/avatar.png";
+import avatar from "../../assets/images/avatar.png";
 import {grey} from "@mui/material/colors";
 import {
     ConnectWithoutContactRounded,

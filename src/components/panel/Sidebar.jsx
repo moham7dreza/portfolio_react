@@ -2,7 +2,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import {Box, Drawer, Fab} from "@mui/material";
 import {grey, red} from "@mui/material/colors";
 import {useState} from "react";
-import {DrawerContent} from "./ui/DrawerContent.jsx";
+import {DrawerContent} from "./DrawerContent.jsx";
 import {MenuRounded} from "@mui/icons-material";
 
 export const Sidebar = ({value, handleChange}) => {

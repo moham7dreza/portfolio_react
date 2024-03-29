@@ -12,7 +12,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import PropTypes from "prop-types";
-import logo from './../../assets/react.svg'
+import logo from '../../assets/images/react.svg'
 import {MdOutlinePhotoCamera} from "react-icons/md";
 import {FiSend} from "react-icons/fi";
 import {LoadingButton} from "@mui/lab";
@@ -61,7 +61,7 @@ const Header = () => {
                     <Toolbar disableGutters>
                         {/*sx property similar to style property but only works with mui components*/}
                         {/*inline styles in most important so h4 is applied*/}
-                        {/*sx is a shortcut for defining custom style which has access to the theme*/}
+                        {/*sx is a shortcut for defining custom style which has access to the index*/}
                         <Typography variant='h3' sx={{marginRight: '2rem', typography: 'h4'}}>وب سایت شخصی</Typography>
                         {/*<CustomizedButton variant='dashed' color='secondary'>*/}
                         {/*    کلیک کن*/}
@@ -77,7 +77,7 @@ const Header = () => {
                         <img src={logo} alt="test" style={{width: '3rem'}}/>
                         <Button variant={'outlined'}
                             // style={{color: 'black'}}
-                            // we can also define custom colors in theme
+                            // we can also define custom colors in index
                                 color={'success'}
                                 size={'large '}
                                 onClick={() => alert('test')}>
