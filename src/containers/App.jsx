@@ -8,6 +8,8 @@ import {Typography} from "@mui/material";
 import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 
 function App() {
+    const [drawerOpen, setDrawerOpen] = useState(false)
+
     const [value, setValue] = useState(0)
     // event arg not used but is needed to receive new value for mui functionality
     const handleChange = (event, newValue) => {
