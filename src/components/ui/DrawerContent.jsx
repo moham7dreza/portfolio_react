@@ -12,7 +12,7 @@ import {
     TextSnippetRounded
 } from "@mui/icons-material";
 
-export const DrawerContent = ({value, handleChange}) => {
+export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
     // we setup unique id for each tab
     const tabProps = (index) => {
         return {
@@ -39,21 +39,7 @@ export const DrawerContent = ({value, handleChange}) => {
                             backgroundColor: grey[800],
                             borderRadius: 2
                         }
-                    }} {...tabProps(0)} label={'home page'} icon={<HomeRounded/>} iconPosition={'start'}/>
-                    <Tab sx={{
-                        "& .MuiTab-root": {
-                            minHeight: 50,
-                            backgroundColor: grey[800],
-                            borderRadius: 2
-                        }
-                    }} {...tabProps(1)} label={'about me'} icon={<FaceRounded/>} iconPosition={'start'}/>
-                    <Tab sx={{
-                        "& .MuiTab-root": {
-                            minHeight: 50,
-                            backgroundColor: grey[800],
-                            borderRadius: 2
-                        }
-                    }} {...tabProps(2)} label={'my resume'} icon={<TextSnippetRounded/>}
+                    }} onClick={() => setDrawerOpen(false)} {...tabProps(0)} label={'home page'} icon={<HomeRounded/>}
                          iconPosition={'start'}/>
                     <Tab sx={{
                         "& .MuiTab-root": {
@@ -61,7 +47,7 @@ export const DrawerContent = ({value, handleChange}) => {
                             backgroundColor: grey[800],
                             borderRadius: 2
                         }
-                    }} {...tabProps(3)} label={'my projects'} icon={<TerminalRounded/>}
+                    }} onClick={() => setDrawerOpen(false)} {...tabProps(1)} label={'about me'} icon={<FaceRounded/>}
                          iconPosition={'start'}/>
                     <Tab sx={{
                         "& .MuiTab-root": {
@@ -69,14 +55,34 @@ export const DrawerContent = ({value, handleChange}) => {
                             backgroundColor: grey[800],
                             borderRadius: 2
                         }
-                    }} {...tabProps(4)} label={'comments'} icon={<MessageRounded/>} iconPosition={'start'}/>
+                    }} onClick={() => setDrawerOpen(false)} {...tabProps(2)} label={'my resume'}
+                         icon={<TextSnippetRounded/>}
+                         iconPosition={'start'}/>
                     <Tab sx={{
                         "& .MuiTab-root": {
                             minHeight: 50,
                             backgroundColor: grey[800],
                             borderRadius: 2
                         }
-                    }} {...tabProps(5)} label={'contact'} icon={<ConnectWithoutContactRounded/>}
+                    }} onClick={() => setDrawerOpen(false)} {...tabProps(3)} label={'my projects'}
+                         icon={<TerminalRounded/>}
+                         iconPosition={'start'}/>
+                    <Tab sx={{
+                        "& .MuiTab-root": {
+                            minHeight: 50,
+                            backgroundColor: grey[800],
+                            borderRadius: 2
+                        }
+                    }} onClick={() => setDrawerOpen(false)} {...tabProps(4)} label={'comments'} icon={<MessageRounded/>}
+                         iconPosition={'start'}/>
+                    <Tab sx={{
+                        "& .MuiTab-root": {
+                            minHeight: 50,
+                            backgroundColor: grey[800],
+                            borderRadius: 2
+                        }
+                    }} onClick={() => setDrawerOpen(false)} {...tabProps(5)} label={'contact'}
+                         icon={<ConnectWithoutContactRounded/>}
                          iconPosition={'start'}/>
                 </Tabs>
                 <Divider variant='middle' sx={{mt: 2}} color={grey[900]}/>

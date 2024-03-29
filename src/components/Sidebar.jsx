@@ -8,10 +8,6 @@ import {MenuRounded} from "@mui/icons-material";
 export const Sidebar = ({value, handleChange}) => {
     const [drawerOpen, setDrawerOpen] = useState(false)
 
-    const handleDrawerOpen = () => {
-        setDrawerOpen(!drawerOpen)
-    }
-
     return (
         <>
             {/*sidebar*/}
@@ -19,7 +15,7 @@ export const Sidebar = ({value, handleChange}) => {
                 {/*hidden box below md*/}
                 <Box sx={{display: {md: 'none'}}}>
                     <Fab aria-label={'floating action button'} size='small' sx={{m: 2, backgroundColor: red[500]}}
-                         onClick={handleDrawerOpen}>
+                         onClick={() => setDrawerOpen(true)}>
                         <MenuRounded/>
                     </Fab>
                 </Box>
@@ -36,7 +32,7 @@ export const Sidebar = ({value, handleChange}) => {
                 <Drawer sx={{"& .MuiDrawer-paper": {width: 320}, display: {md: 'none'}}} open={drawerOpen}
                         variant={'temporary'}
                         onClose={() => setDrawerOpen(false)}>
-                    <DrawerContent value={value} handleChange={handleChange}/>
+                    <DrawerContent value={value} handleChange={handleChange} setDrawerOpen={setDrawerOpen}/>
                 </Drawer>
             </Grid>
         </>
