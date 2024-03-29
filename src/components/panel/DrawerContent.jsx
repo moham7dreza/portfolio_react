@@ -29,7 +29,7 @@ export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
                       scrollButtons={'auto'} allowScrollButtonsMobile>
                     {/*each tab has unique index*/}
                     <Tab sx={{
-                        "& .MuiTab-root": {
+                        "&.MuiTab-root": {
                             minHeight: 50,
                             backgroundColor: grey[800],
                             borderRadius: 2
@@ -37,7 +37,7 @@ export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
                     }} onClick={() => setDrawerOpen(false)} {...tabProps(0)} label={'home page'} icon={<HomeRounded/>}
                          iconPosition={'start'}/>
                     <Tab sx={{
-                        "& .MuiTab-root": {
+                        "&.MuiTab-root": {
                             minHeight: 50,
                             backgroundColor: grey[800],
                             borderRadius: 2
@@ -45,7 +45,7 @@ export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
                     }} onClick={() => setDrawerOpen(false)} {...tabProps(1)} label={'about me'} icon={<FaceRounded/>}
                          iconPosition={'start'}/>
                     <Tab sx={{
-                        "& .MuiTab-root": {
+                        "&.MuiTab-root": {
                             minHeight: 50,
                             backgroundColor: grey[800],
                             borderRadius: 2
@@ -54,7 +54,7 @@ export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
                          icon={<TextSnippetRounded/>}
                          iconPosition={'start'}/>
                     <Tab sx={{
-                        "& .MuiTab-root": {
+                        "&.MuiTab-root": {
                             minHeight: 50,
                             backgroundColor: grey[800],
                             borderRadius: 2
@@ -63,7 +63,7 @@ export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
                          icon={<TerminalRounded/>}
                          iconPosition={'start'}/>
                     <Tab sx={{
-                        "& .MuiTab-root": {
+                        "&.MuiTab-root": {
                             minHeight: 50,
                             backgroundColor: grey[800],
                             borderRadius: 2
@@ -71,7 +71,7 @@ export const DrawerContent = ({value, handleChange, setDrawerOpen}) => {
                     }} onClick={() => setDrawerOpen(false)} {...tabProps(4)} label={'comments'} icon={<MessageRounded/>}
                          iconPosition={'start'}/>
                     <Tab sx={{
-                        "& .MuiTab-root": {
+                        "&.MuiTab-root": {
                             minHeight: 50,
                             backgroundColor: grey[800],
                             borderRadius: 2
