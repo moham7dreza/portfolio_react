@@ -1,10 +1,10 @@
 import {Box, Drawer, Fab} from "@mui/material";
 import {red} from "@mui/material/colors";
 import {useState} from "react";
-import {DrawerContent} from "../DrawerContent.jsx";
+import {SidebarContent} from ".";
 import {MenuRounded} from "@mui/icons-material";
 
-export const Sidebar = ({value, handleChange}) => {
+const Sidebar = ({value, handleChange}) => {
     const [drawerOpen, setDrawerOpen] = useState(false)
 
     return (
@@ -19,7 +19,7 @@ export const Sidebar = ({value, handleChange}) => {
                 </Box>
 
                 {/*sidebar content which follow grid system breakpoints and hidden below md*/}
-                <DrawerContent value={value} handleChange={handleChange}/>
+                <SidebarContent value={value} handleChange={handleChange}/>
                 {/*if we use drawer to toggle sidebar it has not inherited of grid system width because of grid have many breakpoints*/}
                 {/*drawer has not compatible with grid system width*/}
                 {/*drawer have been created a new layer in layout seperated from grid system*/}
@@ -30,9 +30,11 @@ export const Sidebar = ({value, handleChange}) => {
                 <Drawer sx={{"& .MuiDrawer-paper": {width: 320}, display: {md: 'none'}}} open={drawerOpen}
                         variant={'temporary'}
                         onClose={() => setDrawerOpen(false)}>
-                    <DrawerContent value={value} handleChange={handleChange} setDrawerOpen={setDrawerOpen}/>
+                    <SidebarContent value={value} handleChange={handleChange} setDrawerOpen={setDrawerOpen}/>
                 </Drawer>
             </>
         </>
     )
 }
+
+export default Sidebar;

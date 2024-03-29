@@ -2,7 +2,7 @@ import {Box, Divider, Typography} from "@mui/material";
 import {CopyrightRounded, FavoriteRounded} from "@mui/icons-material";
 import {grey} from "@mui/material/colors";
 
-export const SidebarFooter = () => {
+const SidebarFooter = () => {
     return (
         <>
             <Box sx={{
@@ -45,3 +45,5 @@ export const SidebarFooter = () => {
         </>
     )
 }
+
+export default SidebarFooter;

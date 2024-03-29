@@ -1,7 +1,7 @@
 import {Avatar, Typography} from "@mui/material";
 import avatar from "../../../assets/images/avatar.png";
 
-export const SidebarHeader = () => {
+const SidebarHeader = () => {
     return (
         <>
             {/*can be dynamically down ex according to state*/}
@@ -12,3 +12,5 @@ export const SidebarHeader = () => {
         </>
     )
 }
+
+export default SidebarHeader;

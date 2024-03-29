@@ -1,6 +1,6 @@
 import '../App.css'
 import {MainLayout} from "../templates/layouts/MainLayout.jsx";
-import {Sidebar} from "../components/panel/sidebar/Sidebar.jsx";
+import {Sidebar} from "../components/panel/sidebar";
 import {ContentContainer} from "./panel/ContentContainer.jsx";
 import {useState} from "react";
 import {TabPanel} from "../components/panel/TabPanel.jsx";
