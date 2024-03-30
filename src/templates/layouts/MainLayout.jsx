@@ -15,7 +15,7 @@ export const MainLayout = ({children}) => {
                             <title>main layout</title>
                         </Helmet>
                         {/*Grid system*/}
-                        <Grid container sx={{height: "100vh"}}>
+                        <Grid container sx={{height: "100vh", width: '100vh'}}>
                             {children}
                         </Grid>
                     </HelmetProvider>
