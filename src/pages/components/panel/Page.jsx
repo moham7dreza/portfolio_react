@@ -1,6 +1,6 @@
-import {Box, Typography} from "@mui/material";
+import {Box} from "@mui/material";
 
-export const TabPanel = (props) => {
+export const Page = (props) => {
     // other props is placed inside others prop
     const {children, pageNumber, index, ...others} = props;
     return (
@@ -11,10 +11,8 @@ export const TabPanel = (props) => {
                 {/*show component when index equal to pageNumber*/}
                 {pageNumber === index && (
                     <>
-                        <Box sx={{p: 3}}>
-                            <Typography>
-                                {children}
-                            </Typography>
+                        <Box sx={{height: '100vh', overflow: 'hidden'}}>
+                            {children}
                         </Box>
                     </>
                 )}

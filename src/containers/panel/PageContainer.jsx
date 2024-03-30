@@ -1,6 +1,6 @@
 import Grid from "@mui/material/Unstable_Grid2";
 
-export const ContentContainer = ({children}) => {
+export const PageContainer = ({children}) => {
     return (
         <>
             {/*main content*/}
