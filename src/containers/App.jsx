@@ -1,12 +1,14 @@
 import '../App.css'
 import {MainLayout} from "../templates/layouts/MainLayout.jsx";
 import {Sidebar} from "../components/panel/sidebar";
-import {ContentContainer} from "./panel/ContentContainer.jsx";
+import {PageContainer} from "./panel/PageContainer.jsx";
 import {useState} from "react";
-import {TabPanel} from "../components/panel/TabPanel.jsx";
-import {Typography} from "@mui/material";
+import {Page} from "../pages/components/panel/Page.jsx";
+import {Box, Typography} from "@mui/material";
 import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 import MainContext from "../context";
+import MainImage from '../assets/images/Portfolio-Desk.jpg';
+import {DrawerActionButton} from "../components/panel/drawer/index.js";
 
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -30,42 +32,53 @@ function App() {
                 <SidebarContainer>
                     <Sidebar/>
                 </SidebarContainer>
-                <ContentContainer>
+
+                <DrawerActionButton/>
+
+                <PageContainer>
                     {/*tab panel scenario*/}
                     {/*we use value state and define some unique indices for each tab that user can change them so the value is updated*/}
                     {/*although we have unique indices in content container*/}
                     {/*so when the selected index from sidebar is equal to content section index the component will be shown*/}
-                    <TabPanel pageNumber={pageNumber} index={0}>
-                        <Typography>
-                            home page
-                        </Typography>
-                    </TabPanel>
-                    <TabPanel pageNumber={pageNumber} index={1}>
+                    <Page pageNumber={pageNumber} index={0}>
+                        <Box sx={{
+                            backgroundImage: `url(${MainImage})`,
+                            height: '100vh',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                            backgroundSize: 'cover'
+                        }}>
+                            <Typography>
+                                home page
+                            </Typography>
+                        </Box>
+                    </Page>
+                    <Page pageNumber={pageNumber} index={1}>
                         <Typography>
                             about me
                         </Typography>
-                    </TabPanel>
-                    <TabPanel pageNumber={pageNumber} index={2}>
+                    </Page>
+                    <Page pageNumber={pageNumber} index={2}>
                         <Typography>
                             my resume
                         </Typography>
-                    </TabPanel>
-                    <TabPanel pageNumber={pageNumber} index={3}>
+                    </Page>
+                    <Page pageNumber={pageNumber} index={3}>
                         <Typography>
                             my projects
                         </Typography>
-                    </TabPanel>
-                    <TabPanel pageNumber={pageNumber} index={4}>
+                    </Page>
+                    <Page pageNumber={pageNumber} index={4}>
                         <Typography>
                             comments
                         </Typography>
-                    </TabPanel>
-                    <TabPanel pageNumber={pageNumber} index={5}>
+                    </Page>
+                    <Page pageNumber={pageNumber} index={5}>
                         <Typography>
                             contact
                         </Typography>
-                    </TabPanel>
-                </ContentContainer>
+                    </Page>
+                </PageContainer>
             </MainLayout>
         </MainContext.Provider>
     )

@@ -9,7 +9,7 @@ const DrawerActionButton = () => {
     return (
         <>
             {/*hidden box below md*/}
-            <Box sx={{display: {md: 'none'}}}>
+            <Box sx={{display: {md: 'none'}, position: 'absolute'}}>
                 <Fab aria-label={'floating action button'} size='small' sx={{m: 2, backgroundColor: red[500]}}
                      onClick={() => setDrawerOpen(true)}>
                     <MenuRounded/>
