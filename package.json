@@ -27,6 +27,7 @@
     "react-swipeable-views": "^0.14.0",
     "stylis": "^4.3.1",
     "stylis-plugin-rtl": "^2.1.1",
+    "typed.js": "^2.1.0",
     "vazirmatn": "^33.0.3"
   },
   "devDependencies": {

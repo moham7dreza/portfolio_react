@@ -4,12 +4,12 @@ import {Sidebar} from "../components/panel/sidebar";
 import {PageContainer} from "./panel/PageContainer.jsx";
 import {useState} from "react";
 import {Page} from "../pages/components/panel/Page.jsx";
-import {Box, Typography} from "@mui/material";
+import {Typography} from "@mui/material";
 import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 import MainContext from "../context";
-import MainImage from '../assets/images/Portfolio-Desk.jpg';
 import {DrawerActionButton} from "../components/panel/drawer/index.js";
 import SwipeableViews from "react-swipeable-views";
+import {Home} from "../pages";
 
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -43,17 +43,7 @@ function App() {
                     {/*so when the selected index from sidebar is equal to content section index the component will be shown*/}
                     <SwipeableViews index={pageNumber} onChangeIndex={handlePageNumber}>
                         <Page pageNumber={pageNumber} index={0}>
-                            <Box sx={{
-                                backgroundImage: `url(${MainImage})`,
-                                height: '100vh',
-                                backgroundPosition: 'center',
-                                backgroundRepeat: 'no-repeat',
-                                backgroundSize: 'cover'
-                            }}>
-                                <Typography>
-                                    home page
-                                </Typography>
-                            </Box>
+                            <Home/>
                         </Page>
                         <Page pageNumber={pageNumber} index={1}>
                             <Typography>
