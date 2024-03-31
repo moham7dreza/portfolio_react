@@ -9,7 +9,7 @@ import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 import MainContext from "../context";
 import {DrawerActionButton} from "../components/panel/drawer/index.js";
 import SwipeableViews from "react-swipeable-views";
-import {Home} from "../pages";
+import {About, Home} from "../pages";
 
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -46,9 +46,7 @@ function App() {
                             <Home/>
                         </Page>
                         <Page pageNumber={pageNumber} index={1}>
-                            <Typography>
-                                about me
-                            </Typography>
+                            <About/>
                         </Page>
                         <Page pageNumber={pageNumber} index={2}>
                             <Typography>
