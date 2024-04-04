@@ -33,6 +33,7 @@ const About = () => {
             <Card sx={{
                 height: '100vh',
                 backgroundColor: 'whitesmoke',
+                overflowY: 'auto'
             }}>
                 <CardContent>
                     <Grid container sx={{mx: 3}}>

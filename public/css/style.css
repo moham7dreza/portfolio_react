@@ -1,4 +1,11 @@
 body {
     margin: 0;
     padding: 0;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/*hidden scroll bar in mui cards*/
+.MuiCard-root::-webkit-scrollbar {
+    display: none;
 }
