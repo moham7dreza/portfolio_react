@@ -1,4 +1,4 @@
-import {Box, Chip, Divider, LinearProgress, Typography} from "@mui/material";
+import {Badge, Box, Chip, Divider, LinearProgress, Typography} from "@mui/material";
 
 export const Skill = ({label, icon, percent, color}) => {
     return (
@@ -9,9 +9,9 @@ export const Skill = ({label, icon, percent, color}) => {
                       label={label}/>
             </Divider>
             <Box sx={{display: 'flex', alignItems: 'center'}}>
-                <Box sx={{minWidth: 35}}>
+                <Box sx={{minWidth: 35, mr: 1}}>
                     <Typography variant='body2' color={color}>
-                        {percent} %
+                        <Badge color={color} badgeContent={`${percent}%`}/>
                     </Typography>
                 </Box>
                 <Box sx={{width: 1, mr: 1}}>
