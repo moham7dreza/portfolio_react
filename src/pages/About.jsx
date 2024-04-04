@@ -4,8 +4,30 @@ import {CodeRounded, Html, SelfImprovementRounded} from "@mui/icons-material";
 import avatar from "../assets/images/avatar.png";
 import {Info} from "./components/panel/Info.jsx";
 import {Skill} from "./components/panel/Skill.jsx";
+import {useEffect, useState} from "react";
 
 const About = () => {
+    const [html, setHtml] = useState(0)
+    const [js, setJs] = useState(0)
+
+    useEffect(() => {
+        function getRand() {
+            return Math.round(Math.random() * 10)
+        }
+
+        // use setInterval to increase old values every 100 ms
+        const timer = setInterval(() => {
+            // create rand number between 0 to 10 and add it to old value to receive to html skill value
+            setHtml(html => Math.min(html + getRand(), 82))
+            setJs(js => Math.min(js + getRand(), 90))
+        }, 100)
+
+        // when unmounting
+        return () => {
+            clearInterval(timer)
+        }
+    }, []);
+
     return (
         <>
             <Card sx={{
@@ -47,8 +69,8 @@ const About = () => {
                                     </Typography>
                                 } sx={{p: 3}} icon={<SelfImprovementRounded/>}></Chip>
                             </Divider>
-                            <Skill label='Html' icon={<Html/>} percent={90} color={'primary'}/>
-                            <Skill label='Js' icon={<Html/>} percent={80} color={'secondary'}/>
+                            <Skill label='Html' icon={<Html/>} percent={html} color={'primary'}/>
+                            <Skill label='Js' icon={<Html/>} percent={js} color={'secondary'}/>
                         </Grid>
                     </Grid>
                 </CardContent>
