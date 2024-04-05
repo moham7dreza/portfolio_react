@@ -13,21 +13,11 @@ const Home = () => {
 
     const nameElement = useRef()
 
-    const strings = [
-        "i am programmer",
-        "i am developer",
-        "i am coder",
-        "i am coder",
-        "i am coder",
-    ]
+    const strings = ["i am programmer", "i am developer", "i am coder", "i am coder", "i am coder",]
 
     useEffect(() => {
         const TypedName = new Typed(nameElement.current, {
-            strings: ["my name is felan"],
-            typeSpeed: 50,
-            backDelay: 10,
-            backSpeed: 20,
-            showCursor: false
+            strings: ["my name is felan"], typeSpeed: 110, backDelay: 50, backSpeed: 80, showCursor: false
         })
         // every 3 seconds index value increased
         const stringsTransition = setInterval(() => {
@@ -49,25 +39,33 @@ const Home = () => {
         await console.log(container)
     }, [])
 
-    return (
-        <>
-            <Box sx={{
-                backgroundImage: `url(${MainImage})`,
-                height: '100vh',
-                backgroundPosition: 'center',
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'cover',
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-                gap: 2
-            }}>
-                <Particles id='tsparticles' init={particlesInit} loaded={particlesLoaded} options={mouseAttraction}/>
+    return (<>
+        <Box sx={{
+            backgroundImage: `url(${MainImage})`,
+            height: '100vh',
+            backgroundPosition: 'center',
+            backgroundRepeat: 'no-repeat',
+            backgroundSize: 'cover',
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center',
+            gap: 2
+        }}>
+            <Particles id='tsparticles' init={particlesInit} loaded={particlesLoaded} options={mouseAttraction}/>
+            <Box component='div' sx={{display: 'flex'}}>
+                <Typography variant='h3' color={'tomato'}>
+                    {"{{"}
+                </Typography>
                 <Typography ref={nameElement} variant='h3' color={'aqua'}></Typography>
+                <Typography variant='h3' color={'tomato'}>
+                    {"}}"}
+                </Typography>
+            </Box>
+            <Box component='div' sx={{display: 'flex', alignItems: 'center'}}>
                 {/*wobbly -> effect after string shown*/}
                 <TextTransition springConfig={presets.wobbly}>
-                    <Typography sx={{mt: 4, textDecoration: 'underline', textDecorationColor: 'blue'}}
+                    <Typography sx={{mt: 2, textDecoration: 'underline', textDecorationColor: 'blue'}}
                                 variant='h4' color={'aqua'}>
                         {/*we need to make loop for show 1 one strings every 3 seconds*/}
                         {/*index = 0 => strings[0 % 4 = 0]*/}
@@ -88,8 +86,8 @@ const Home = () => {
                     i am
                 </Typography>
             </Box>
-        </>
-    )
+        </Box>
+    </>)
 }
 
 export default Home;
