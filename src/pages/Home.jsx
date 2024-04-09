@@ -6,6 +6,7 @@ import {loadFull} from "tsparticles";
 import Particles from "react-particles";
 import {mouseAttraction} from "../constants/panel/particles";
 import TextTransition, {presets} from "react-text-transition";
+import {Helmet} from "react-helmet-async";
 
 const Home = () => {
     // we need this state for handle strings index
@@ -40,6 +41,9 @@ const Home = () => {
     }, [])
 
     return (<>
+        <Helmet>
+            <title>home page</title>
+        </Helmet>
         <Box sx={{
             backgroundImage: `url(${MainImage})`,
             height: '100vh',

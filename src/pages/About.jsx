@@ -5,6 +5,7 @@ import avatar from "../assets/images/avatar.png";
 import {Info} from "./components/panel/Info.jsx";
 import {Skill} from "./components/panel/Skill.jsx";
 import {useEffect, useState} from "react";
+import {Helmet} from "react-helmet-async";
 
 const About = () => {
     const [html, setHtml] = useState(0)
@@ -30,6 +31,9 @@ const About = () => {
 
     return (
         <>
+            <Helmet>
+                <title>about me</title>
+            </Helmet>
             <Card sx={{
                 height: '100vh',
                 backgroundColor: 'whitesmoke',
