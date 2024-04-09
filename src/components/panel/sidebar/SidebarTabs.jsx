@@ -59,7 +59,7 @@ const SidebarTabs = () => {
         <>
             {/*parent tab gets value and handle change*/}
             <Tabs value={pageNumber} onChange={handlePageNumber} orientation='vertical' variant={'scrollable'}
-                  scrollButtons={'auto'} allowScrollButtonsMobile>
+                  scrollButtons={'auto'} allowScrollButtonsMobile indicatorColor='secondary' textColor='secondary'>
                 {/*each tab has unique index*/}
                 {
                     tabs.map((tab, index) => (
