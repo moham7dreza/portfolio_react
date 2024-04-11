@@ -32,7 +32,7 @@ export const SocialMedia = () => {
                     social_medias.map((social_media, index) => (
                         <IconButton key={index} arial-label={social_media.ariaLabel}>
                             {/*redirect user outer of our website with anchor tag*/}
-                            <a href={social_media.href} target='_blank' rel='noopener noreferer'>
+                            <a href={social_media.href} target='_blank' rel='noopener noreferrer'>
                                 {social_media.icon}
                             </a>
                         </IconButton>
