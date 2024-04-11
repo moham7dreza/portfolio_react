@@ -3,6 +3,7 @@ import avatar from "../../../assets/images/avatar.png";
 import {RandomReveal} from "react-random-reveal";
 import {persianAlphabet} from "../../../constants/panel/persian-alphabets.js";
 import {useState} from "react";
+import {SocialMedia} from "../SocialMedia.jsx";
 
 const SidebarHeader = () => {
     const [start, setStart] = useState(false)
@@ -25,6 +26,8 @@ const SidebarHeader = () => {
                     </Typography>
                 )
             }
+
+            <SocialMedia/>
         </>
     )
 }
