@@ -2,9 +2,9 @@ import '../App.css'
 import {MainLayout} from "../templates/layouts/MainLayout.jsx";
 import {Sidebar} from "../components/panel/sidebar";
 import {PageContainer} from "./panel/PageContainer.jsx";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Page} from "../pages/components/panel/Page.jsx";
-import {Typography} from "@mui/material";
+import {Typography, useMediaQuery, useTheme} from "@mui/material";
 import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 import MainContext from "../context";
 import {DrawerActionButton} from "../components/panel/drawer/index.js";
@@ -20,6 +20,19 @@ function App() {
         // receive new value on tab changes and set to the value
         setPageNumber(newPage);
     }
+
+    const theme = useTheme()
+    // if display is above small breakpoint
+    const isSmUp = useMediaQuery(theme.breakpoints.up('sm'))
+    const isMdUp = useMediaQuery(theme.breakpoints.up('md'))
+
+    // update cycle and listen for isSmUp event -> and close the drawer
+    useEffect(() => {
+        if (isMdUp) {
+            setDrawerOpen(false)
+        }
+    }, [isMdUp]);
+
     return (
         <MainContext.Provider value={{
             pageNumber,
