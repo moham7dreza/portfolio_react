@@ -16,7 +16,7 @@ import {useEffect, useState} from "react";
 import {Helmet} from "react-helmet-async";
 import CountUp from "react-countup";
 
-const About = () => {
+const About = ({helmetTitle}) => {
     const [html, setHtml] = useState(0)
     const [js, setJs] = useState(0)
 
@@ -68,7 +68,7 @@ const About = () => {
     return (
         <>
             <Helmet>
-                <title>about me</title>
+                <title>{helmetTitle}</title>
             </Helmet>
             <Card sx={{
                 height: '100vh',

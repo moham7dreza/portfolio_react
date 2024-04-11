@@ -9,7 +9,7 @@ import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 import MainContext from "../context";
 import {DrawerActionButton} from "../components/panel/drawer/index.js";
 import SwipeableViews from "react-swipeable-views";
-import {About, Home} from "../pages";
+import {About, Home, Resume} from "../pages";
 
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -56,15 +56,13 @@ function App() {
                     {/*so when the selected index from sidebar is equal to content section index the component will be shown*/}
                     <SwipeableViews index={pageNumber} onChangeIndex={handlePageNumber}>
                         <Page pageNumber={pageNumber} index={0}>
-                            <Home/>
+                            <Home helmetTitle='home page'/>
                         </Page>
                         <Page pageNumber={pageNumber} index={1}>
-                            <About/>
+                            <About helmetTitle='about page'/>
                         </Page>
                         <Page pageNumber={pageNumber} index={2}>
-                            <Typography>
-                                my resume
-                            </Typography>
+                            <Resume helmetTitle='resume page'/>
                         </Page>
                         <Page pageNumber={pageNumber} index={3}>
                             <Typography>

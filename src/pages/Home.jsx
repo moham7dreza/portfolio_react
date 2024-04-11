@@ -8,7 +8,7 @@ import {mouseAttraction} from "../constants/panel/particles";
 import TextTransition, {presets} from "react-text-transition";
 import {Helmet} from "react-helmet-async";
 
-const Home = () => {
+const Home = ({helmetTitle}) => {
     // we need this state for handle strings index
     const [index, setIndex] = useState(0)
 
@@ -42,7 +42,7 @@ const Home = () => {
 
     return (<>
         <Helmet>
-            <title>home page</title>
+            <title>{helmetTitle}</title>
         </Helmet>
         <Box sx={{
             backgroundImage: `url(${MainImage})`,
