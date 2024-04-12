@@ -12,7 +12,7 @@ const SidebarFooter = () => {
                 alignItems: 'end',
                 height: 50
             }}>
-                <Typography variant='subtitle2' color={'whitesmoke'}
+                <Typography variant='subtitle2' color='text.primary'
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',
@@ -31,7 +31,7 @@ const SidebarFooter = () => {
                 alignItems: 'end',
                 height: 50
             }}>
-                <Typography variant='subtitle2' color={'whitesmoke'}
+                <Typography variant='subtitle2' color='text.primary'
                             sx={{
                                 display: 'flex',
                                 alignItems: 'center',

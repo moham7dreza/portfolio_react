@@ -6,15 +6,16 @@ import MainContext from '../../context/index.js'
 export const ThemeActionButton = () => {
     const theme = useTheme()
     const {handleThemeChange} = useContext(MainContext)
+    const mode = theme.palette.mode
     return (
         <>
             <Box sx={{display: {sm: 'none', md: 'block'}, position: 'absolute'}}>
                 <Fab color='secondary' variant='extended' aria-label={'floating action button'} size='small'
-                     sx={{m2: 2, color: 'whitesmoke'}}
+                     sx={{m2: 2, color: mode === 'dark' ? 'gray' : 'black'}}
                      onClick={handleThemeChange}>
-                    {theme.palette.mode === 'dark' ? <WbSunnyOutlined sx={{mr: 1}}/> :
+                    {mode === 'dark' ? <WbSunnyOutlined sx={{mr: 1}}/> :
                         <NightlightOutlined sx={{mr: 1}}/>}
-                    {theme.palette.mode === 'dark' ? 'Dark' : 'Light'}
+                    {mode === 'dark' ? 'Light' : 'Dark'}
                 </Fab>
             </Box>
         </>

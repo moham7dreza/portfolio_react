@@ -1,4 +1,4 @@
-import {Tab, Tabs} from "@mui/material";
+import {Tab, Tabs, useTheme} from "@mui/material";
 import {grey} from "@mui/material/colors";
 import {useContext} from "react";
 import MainContext from "../../../context";
@@ -13,6 +13,9 @@ import {
 } from "@mui/icons-material";
 
 const SidebarTabs = () => {
+    const theme = useTheme()
+    const mode = theme.palette.mode
+
     const {pageNumber, handlePageNumber, setDrawerOpen} = useContext(MainContext)
     // const data = tabsData();
     // we setup unique id for each tab
@@ -59,16 +62,21 @@ const SidebarTabs = () => {
         <>
             {/*parent tab gets value and handle change*/}
             <Tabs value={pageNumber} onChange={handlePageNumber} orientation='vertical' variant={'scrollable'}
-                  scrollButtons={'auto'} allowScrollButtonsMobile indicatorColor='secondary' textColor='secondary'>
+                  scrollButtons={'auto'} allowScrollButtonsMobile
+                  indicatorColor={mode === 'dark' ? 'secondary' : 'primary'}
+                  textColor={mode === 'dark' ? 'secondary' : 'primary'}>
                 {/*each tab has unique index*/}
                 {
                     tabs.map((tab, index) => (
                         <Tab key={index} sx={{
                             "&.MuiTab-root": {
                                 minHeight: 50,
-                                backgroundColor: grey[800],
-                                borderRadius: 2
-                            }
+                            },
+                            backgroundColor: mode === 'dark' ? grey[800] : grey[500],
+                            borderRadius: 2,
+                            my: .5,
+                            mx: 1.5,
+                            color: 'text.primary'
                         }} onClick={() => setDrawerOpen(false)}
                              label={tab.label} icon={tab.icon}
                              iconPosition={'start'}
