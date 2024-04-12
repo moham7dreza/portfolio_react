@@ -26,6 +26,8 @@ function App() {
     const isSmUp = useMediaQuery(theme.breakpoints.up('sm'))
     const isMdUp = useMediaQuery(theme.breakpoints.up('md'))
 
+    const userDarkModeDetection = useMediaQuery('(prefers-color-scheme: dark)')
+
     // update cycle and listen for isSmUp event -> and close the drawer
     useEffect(() => {
         if (isMdUp) {
@@ -36,8 +38,8 @@ function App() {
     const [mode, setMode] = useState()
 
     useEffect(() => {
-        setMode('dark')
-    }, []);
+        setMode(userDarkModeDetection ? 'dark' : 'light')
+    }, [userDarkModeDetection]);
 
     const handleThemeChange = () => {
         setMode(prevMode => prevMode === 'light' ? 'dark' : 'light')
