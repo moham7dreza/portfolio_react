@@ -6,5 +6,7 @@ export default createContext({
     },
     drawerOpen: false,
     setDrawerOpen: () => {
+    },
+    handleThemeChange: () => {
     }
 })

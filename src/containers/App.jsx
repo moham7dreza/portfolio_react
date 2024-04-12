@@ -33,15 +33,26 @@ function App() {
         }
     }, [isMdUp]);
 
+    const [mode, setMode] = useState()
+
+    useEffect(() => {
+        setMode('dark')
+    }, []);
+
+    const handleThemeChange = () => {
+        setMode(prevMode => prevMode === 'light' ? 'dark' : 'light')
+    }
+
     return (
         <MainContext.Provider value={{
             pageNumber,
             handlePageNumber,
             drawerOpen,
             setDrawerOpen,
+            handleThemeChange
         }}>
             {/*according to specific route we can render specific layout*/}
-            <MainLayout>
+            <MainLayout mode={mode}>
                 {/*value first in sending to the sidebar tabs and changing state is called in sidebar tabs*/}
                 <SidebarContainer>
                     <Sidebar/>
