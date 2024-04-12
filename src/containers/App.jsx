@@ -9,7 +9,7 @@ import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 import MainContext from "../context";
 import {DrawerActionButton} from "../components/panel/drawer/index.js";
 import SwipeableViews from "react-swipeable-views";
-import {About, Home, Resume} from "../pages";
+import {About, Course, Home, Resume} from "../pages";
 
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -65,9 +65,7 @@ function App() {
                             <Resume helmetTitle='resume page'/>
                         </Page>
                         <Page pageNumber={pageNumber} index={3}>
-                            <Typography>
-                                my projects
-                            </Typography>
+                            <Course helmetTitle='course page'/>
                         </Page>
                         <Page pageNumber={pageNumber} index={4}>
                             <Typography>
