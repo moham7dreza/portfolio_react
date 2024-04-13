@@ -8,7 +8,8 @@ import {
     InputAdornment,
     Slide,
     TextField,
-    Typography
+    Typography,
+    useTheme
 } from "@mui/material";
 import {Helmet} from "react-helmet-async";
 import {useEffect, useState} from "react";
@@ -17,6 +18,7 @@ import Grid from "@mui/material/Unstable_Grid2";
 import MainImage from "../assets/images/Portfolio-Desk.jpg";
 import {useFormik} from "formik";
 import {contactValidationSchema} from "./validations/panel/contactValidation.js";
+import {ReCAPTCHA} from "react-google-recaptcha";
 
 
 const Contact = ({helmetTitle}) => {
@@ -38,6 +40,7 @@ const Contact = ({helmetTitle}) => {
         email: '',
         subject: '',
         message: '',
+        recaptcha: '',
     }
 
     const formik = useFormik({
@@ -151,6 +154,21 @@ const Contact = ({helmetTitle}) => {
                                             </Grid>
                                         </CardContent>
                                         <CardActions sx={{alignItems: 'end', flexDirection: 'column'}}>
+                                            <ReCAPTCHA
+                                                sitekey="Your client site key"
+                                                theme={useTheme().palette.mode}
+                                                onChange={value => {
+                                                    formik.setFieldValue('recaptcha', value)
+                                                }}
+                                                hl='fa'
+                                            />
+                                            {
+                                                formik.errors.recaptcha && formik.touched.recaptcha && (
+                                                    <Typography variant='caption' color='error'>
+                                                        {formik.errors.recaptcha}
+                                                    </Typography>
+                                                )
+                                            }
                                             <Button type='submit' color='success' variant='contained' fullWidth
                                                     sx={{mt: 2}}>
                                                 send
