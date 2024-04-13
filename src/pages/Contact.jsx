@@ -15,6 +15,8 @@ import {useEffect, useState} from "react";
 import {AccountCircle, EmailRounded, Face6Rounded, SubjectRounded} from "@mui/icons-material";
 import Grid from "@mui/material/Unstable_Grid2";
 import MainImage from "../assets/images/Portfolio-Desk.jpg";
+import {useFormik} from "formik";
+import {contactValidationSchema} from "./validations/panel/contactValidation.js";
 
 
 const Contact = ({helmetTitle}) => {
@@ -30,6 +32,21 @@ const Contact = ({helmetTitle}) => {
             setLoading(false)
         }
     }, []);
+
+    const contactInputNames = {
+        name: '',
+        email: '',
+        subject: '',
+        message: '',
+    }
+
+    const formik = useFormik({
+        initialValues: contactInputNames,
+        onSubmit: values => {
+
+        },
+        validationSchema: contactValidationSchema,
+    })
 
     return (
         <>
@@ -60,7 +77,7 @@ const Contact = ({helmetTitle}) => {
                                style={{transitionDelay: loading ? '200ms' : '0ms'}}>
                             <Grid xs={12} sm={12} md={8}>
                                 <Card sx={{justifyContent: 'center', alignItems: 'center'}}>
-                                    <form autoComplete='off'>
+                                    <form autoComplete='off' onSubmit={formik.handleSubmit}>
                                         <CardContent>
                                             <Grid container>
                                                 <Grid xs={12} sx={{direction: 'ltr'}}>
@@ -68,6 +85,12 @@ const Contact = ({helmetTitle}) => {
                                                         <Grid xs={12} md={6}>
                                                             <TextField fullWidth size='small' color='warning' focused
                                                                        label='name' name='name' variant='outlined'
+                                                                       helperText={
+                                                                           formik.touched.name ? formik.errors.name : null
+                                                                       }
+                                                                       error={Boolean(formik.touched.name && formik.errors.name)}
+                                                                       value={formik.values?.name}
+                                                                       onChange={formik.handleChange}
                                                                        InputProps={{
                                                                            endAdornment: (
                                                                                <InputAdornment position='end'>
@@ -79,6 +102,12 @@ const Contact = ({helmetTitle}) => {
                                                         <Grid xs={12} md={6}>
                                                             <TextField fullWidth size='small' color='warning'
                                                                        label='email' name='email' variant='outlined'
+                                                                       helperText={
+                                                                           formik.touched.email ? formik.errors.email : null
+                                                                       }
+                                                                       error={Boolean(formik.touched.email && formik.errors.email)}
+                                                                       value={formik.values?.email}
+                                                                       onChange={formik.handleChange}
                                                                        InputProps={{
                                                                            endAdornment: (
                                                                                <InputAdornment position='end'>
@@ -90,6 +119,12 @@ const Contact = ({helmetTitle}) => {
                                                         <Grid xs={12} md={12}>
                                                             <TextField fullWidth size='small' color='warning'
                                                                        label='subject' name='subject' variant='outlined'
+                                                                       helperText={
+                                                                           formik.touched.subject ? formik.errors.subject : null
+                                                                       }
+                                                                       error={Boolean(formik.touched.subject && formik.errors.subject)}
+                                                                       value={formik.values?.subject}
+                                                                       onChange={formik.handleChange}
                                                                        InputProps={{
                                                                            endAdornment: (
                                                                                <InputAdornment position='end'>
@@ -102,7 +137,14 @@ const Contact = ({helmetTitle}) => {
                                                             <TextField multiline rows={6} fullWidth size='small'
                                                                        color='warning'
                                                                        label='message' name='message'
-                                                                       variant='outlined'/>
+                                                                       variant='outlined'
+                                                                       helperText={
+                                                                           formik.touched.message ? formik.errors.message : null
+                                                                       }
+                                                                       error={Boolean(formik.touched.message && formik.errors.message)}
+                                                                       value={formik.values?.message}
+                                                                       onChange={formik.handleChange}
+                                                            />
                                                         </Grid>
                                                     </Grid>
                                                 </Grid>
