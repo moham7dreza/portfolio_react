@@ -4,12 +4,12 @@ import {Sidebar} from "../components/panel/sidebar";
 import {PageContainer} from "./panel/PageContainer.jsx";
 import {useEffect, useState} from "react";
 import {Page} from "../pages/components/panel/Page.jsx";
-import {Typography, useMediaQuery, useTheme} from "@mui/material";
+import {useMediaQuery, useTheme} from "@mui/material";
 import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 import MainContext from "../context";
 import {DrawerActionButton} from "../components/panel/drawer/index.js";
 import SwipeableViews from "react-swipeable-views";
-import {About, Comment, Course, Home, Resume} from "../pages";
+import {About, Comment, Contact, Course, Home, Resume} from "../pages";
 
 function App() {
     const [drawerOpen, setDrawerOpen] = useState(false)
@@ -84,9 +84,7 @@ function App() {
                             <Comment helmetTitle='course page'/>
                         </Page>
                         <Page pageNumber={pageNumber} index={5}>
-                            <Typography>
-                                contact
-                            </Typography>
+                            <Contact helmetTitle='contact page'/>
                         </Page>
                     </SwipeableViews>
                 </PageContainer>
