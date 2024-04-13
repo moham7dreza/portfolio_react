@@ -155,7 +155,7 @@ const Contact = ({helmetTitle}) => {
                                         </CardContent>
                                         <CardActions sx={{alignItems: 'end', flexDirection: 'column'}}>
                                             <ReCAPTCHA
-                                                sitekey="Your client site key"
+                                                sitekey={import.meta.env.GOOGLE_RECAPTCHA_V2_SITE_KEY}
                                                 theme={useTheme().palette.mode}
                                                 onChange={value => {
                                                     formik.setFieldValue('recaptcha', value)
