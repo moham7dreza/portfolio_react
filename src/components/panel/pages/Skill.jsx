@@ -1,6 +1,6 @@
 import {Badge, Box, Chip, Divider, LinearProgress, Typography} from "@mui/material";
 
-export const Skill = ({label, icon, percent, color}) => {
+const Skill = ({label, icon, percent, color}) => {
     return (
         <>
             <Divider textAlign='right'>
@@ -22,3 +22,5 @@ export const Skill = ({label, icon, percent, color}) => {
         </>
     )
 }
+
+export default Skill;

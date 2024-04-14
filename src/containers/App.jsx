@@ -3,7 +3,7 @@ import {MainLayout} from "../templates/layouts/MainLayout.jsx";
 import {Sidebar} from "../components/panel/sidebar";
 import {PageContainer} from "./panel/PageContainer.jsx";
 import {useEffect, useState} from "react";
-import {Page} from "../pages/components/panel/Page.jsx";
+import {Page} from "../components/panel/pages";
 import {useMediaQuery, useTheme} from "@mui/material";
 import {SidebarContainer} from "./panel/SidebarContainer.jsx";
 import MainContext from "../context";
@@ -63,7 +63,7 @@ function App() {
                 <DrawerActionButton/>
 
                 <PageContainer>
-                    {/*tab panel scenario*/}
+                    {/*tab pages scenario*/}
                     {/*we use value state and define some unique indices for each tab that user can change them so the value is updated*/}
                     {/*although we have unique indices in content container*/}
                     {/*so when the selected index from sidebar is equal to content section index the component will be shown*/}

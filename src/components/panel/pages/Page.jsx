@@ -1,6 +1,6 @@
 import {Box} from "@mui/material";
 
-export const Page = (props) => {
+const Page = (props) => {
     // other props is placed inside others prop
     const {children, pageNumber, index, ...others} = props;
     return (
@@ -20,3 +20,5 @@ export const Page = (props) => {
         </>
     )
 }
+
+export default Page;

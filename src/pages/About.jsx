@@ -10,8 +10,7 @@ import {
     SelfImprovementRounded
 } from "@mui/icons-material";
 import avatar from "../assets/images/avatar.png";
-import {Info} from "./components/panel/Info.jsx";
-import {Skill} from "./components/panel/Skill.jsx";
+import {Info, Skill} from "../components/panel/pages";
 import {useEffect, useState} from "react";
 import {Helmet} from "react-helmet-async";
 import CountUp from "react-countup";
