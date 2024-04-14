@@ -1,4 +1,4 @@
-import {Avatar, Box, Card, CardContent, Chip, Divider, Tooltip, Typography} from "@mui/material";
+import {Box, Card, CardContent, Chip, Divider, Tooltip, Typography} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
 import {
     CodeRounded,
@@ -14,6 +14,7 @@ import {Info, Skill} from "../components/panel/pages";
 import {useEffect, useState} from "react";
 import {Helmet} from "react-helmet-async";
 import CountUp from "react-countup";
+import {CustomAvatar} from "../components/panel/common/index.js";
 
 const About = ({helmetTitle}) => {
     const [html, setHtml] = useState(0)
@@ -117,13 +118,7 @@ const About = ({helmetTitle}) => {
                             </Grid>
                         </Grid>
                         <Grid xs={0} sm={0} md={4} lg={4} xl={4}>
-                            <Avatar alt='avatar' src={avatar} variant='rounded'
-                                    sx={{
-                                        height: 250,
-                                        width: 250,
-                                        m: '0 auto',
-                                        display: {xs: 'none', sm: 'none', md: 'block'}
-                                    }}/>
+                            <CustomAvatar avatar={avatar} alt='developer' size={250} fallback='developer'/>
                         </Grid>
                     </Grid>
                     <Grid container>
