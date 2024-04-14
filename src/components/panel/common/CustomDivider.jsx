@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 import {Chip, Divider, Slide, Typography} from "@mui/material";
 
-const CustomDivider = ({text, icon, borderColor, chipColor}) => {
+const CustomDivider = ({text, icon, borderColor, chipColor, align}) => {
 
     const [loading, setLoading] = useState(false)
 
@@ -20,7 +20,7 @@ const CustomDivider = ({text, icon, borderColor, chipColor}) => {
             <Slide direction='down' in={loading} style={{
                 transitionDelay: loading ? '500ms' : '0ms'
             }}>
-                <Divider textAlign='center' sx={{'&::before, &::after': {borderColor: borderColor}}}>
+                <Divider textAlign={align} sx={{'&::before, &::after': {borderColor: borderColor}}}>
                     <Chip color={chipColor} label={
                         <Typography variant='body1' color='black' sx={{textAlign: 'center'}}>
                             {text}

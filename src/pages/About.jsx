@@ -1,70 +1,14 @@
-import {Box, Card, CardContent, Chip, Divider, Tooltip, Typography} from "@mui/material";
+import {Card, CardContent} from "@mui/material";
 import Grid from "@mui/material/Unstable_Grid2";
-import {
-    CodeRounded,
-    Coffee,
-    DataObjectRounded,
-    DomainVerificationRounded,
-    Html,
-    SchoolRounded,
-    SelfImprovementRounded
-} from "@mui/icons-material";
+import {CodeRounded, SelfImprovementRounded} from "@mui/icons-material";
 import avatar from "../assets/images/avatar.png";
-import {Info, Skill} from "../components/panel/pages";
-import {useEffect, useState} from "react";
+import {WorkCounter} from "../components/panel/pages";
 import {Helmet} from "react-helmet-async";
-import CountUp from "react-countup";
-import {CustomAvatar} from "../components/panel/common/index.js";
+import {CustomAvatar, CustomDivider} from "../components/panel/common/index.js";
+import Skills from "../components/panel/Skills.jsx";
+import DevInfo from "../components/panel/pages/Info.jsx";
 
 const About = ({helmetTitle}) => {
-    const [html, setHtml] = useState(0)
-    const [js, setJs] = useState(0)
-
-    const devWorkInfo = [
-        {
-            tooltipTitle: "تعداد قهوه های خورده شده",
-            icon: <Coffee/>,
-            total: 1650,
-            color: "lightcoral",
-        },
-        {
-            tooltipTitle: "تعداد دوره های من",
-            icon: <SchoolRounded/>,
-            total: 25,
-            color: "lightskyblue",
-        },
-        {
-            tooltipTitle: "تعداد پروژه های من",
-            icon: <DataObjectRounded/>,
-            total: 34,
-            color: "lightslategray",
-        },
-        {
-            tooltipTitle: "تعداد پروژه های به پایان رسیده",
-            icon: <DomainVerificationRounded/>,
-            total: 12,
-            color: "lightseagreen",
-        },
-    ];
-
-    useEffect(() => {
-        function getRand() {
-            return Math.round(Math.random() * 10)
-        }
-
-        // use setInterval to increase old values every 100 ms
-        const timer = setInterval(() => {
-            // create rand number between 0 and 10 and add it to old value to receive to html skill value
-            setHtml(html => Math.min(html + getRand(), 82))
-            setJs(js => Math.min(js + getRand(), 90))
-        }, 100)
-
-        // when unmounting
-        return () => {
-            clearInterval(timer)
-        }
-    }, []);
-
     return (
         <>
             <Helmet>
@@ -78,13 +22,8 @@ const About = ({helmetTitle}) => {
                 <CardContent>
                     <Grid container sx={{mx: 3}}>
                         <Grid xs={12} sm={12} md={8} lg={8} xl={8}>
-                            <Divider textAlign='right'>
-                                <Chip color='primary' label={
-                                    <Typography variant='body1' color='black' sx={{textAlign: 'center'}}>
-                                        i am a backend developer
-                                    </Typography>
-                                } sx={{p: 3}} icon={<CodeRounded/>}></Chip>
-                            </Divider>
+                            <CustomDivider borderColor='primary.main' chipColor='primary' align='right'
+                                           icon={<CodeRounded/>} text='i am a backend developer'/>
                             <Grid container>
                                 <Grid xs={4} sm={4} md={3} lg={3} xl={3} sx={{
                                     mt: 3,
@@ -94,26 +33,10 @@ const About = ({helmetTitle}) => {
                                         'md': 'block',
                                     }
                                 }}>
-                                    {
-                                        devWorkInfo.map((item, index) => (
-                                            <Box component='div' key={index} sx={{width: 1, mb: 2}}>
-                                                <Tooltip title={item.tooltipTitle} placement='right' arrow>
-                                                    <Chip icon={item.icon} label={
-                                                        <Typography variant='body1' color='whitesmoke'>
-                                                            <CountUp start={0} end={item.total} duration={2}/>
-                                                        </Typography>
-                                                    } sx={{p: 2, backgroundColor: item.color, width: 1}}/>
-                                                </Tooltip>
-                                            </Box>
-                                        ))
-                                    }
+                                    <WorkCounter/>
                                 </Grid>
                                 <Grid xs={12} sm={8} md={9} lg={9} xl={9}>
-                                    <Info>i am backend dev</Info>
-                                    <Info>i am backend dev</Info>
-                                    <Info>i am backend dev</Info>
-                                    <Info>i am backend dev</Info>
-                                    <Info>i am backend dev</Info>
+                                    <DevInfo/>
                                 </Grid>
                             </Grid>
                         </Grid>
@@ -123,15 +46,9 @@ const About = ({helmetTitle}) => {
                     </Grid>
                     <Grid container>
                         <Grid sx={{width: 1, mt: 1}}>
-                            <Divider textAlign='center' sx={{'&::before, &::after': {borderColor: 'white'}}}>
-                                <Chip color='secondary' label={
-                                    <Typography variant='body1' color='black' sx={{textAlign: 'center'}}>
-                                        i am a backend developer
-                                    </Typography>
-                                } sx={{p: 3}} icon={<SelfImprovementRounded/>}></Chip>
-                            </Divider>
-                            <Skill label='Html' icon={<Html/>} percent={html} color={'primary'}/>
-                            <Skill label='Js' icon={<Html/>} percent={js} color={'secondary'}/>
+                            <CustomDivider borderColor='secondary.main' chipColor='secondary' align='center'
+                                           icon={<SelfImprovementRounded/>} text='my skills'/>
+                            <Skills/>
                         </Grid>
                     </Grid>
                 </CardContent>

@@ -13,4 +13,16 @@ const Info = ({children}) => {
     )
 }
 
-export default Info;
+const DevInfo = () => {
+    return (
+        <>
+            <Info>i am backend dev</Info>
+            <Info>i am backend dev</Info>
+            <Info>i am backend dev</Info>
+            <Info>i am backend dev</Info>
+            <Info>i am backend dev</Info>
+        </>
+    )
+}
+
+export default DevInfo;
