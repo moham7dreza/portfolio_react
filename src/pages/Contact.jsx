@@ -17,7 +17,7 @@ import {AccountCircle, EmailRounded, Face6Rounded, SubjectRounded} from "@mui/ic
 import Grid from "@mui/material/Unstable_Grid2";
 import MainImage from "../assets/images/Portfolio-Desk.jpg";
 import {useFormik} from "formik";
-import {contactValidationSchema} from "./validations/panel/contactValidation.js";
+import {contactValidationSchema} from "../validations/panel/contactValidation.js";
 import {ReCAPTCHA} from "react-google-recaptcha";
 
 
