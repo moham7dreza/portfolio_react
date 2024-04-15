@@ -1,9 +1,9 @@
-import {Avatar, Box, Card, CardContent, Chip, Divider, Slide, Typography} from "@mui/material";
+import {Avatar, Box, Card, CardContent, Typography} from "@mui/material";
 import {Helmet} from "react-helmet-async";
-import {useEffect, useState} from "react";
 import {ForumRounded} from "@mui/icons-material";
 import {comments} from "../constants/panel/comments.js";
 import Slider from "react-slick";
+import {CustomDivider} from "../components/panel/common/index.js";
 
 
 const Comment = ({helmetTitle}) => {
@@ -18,18 +18,6 @@ const Comment = ({helmetTitle}) => {
         cssEase: 'linear'
     }
 
-    const [loading, setLoading] = useState(false)
-
-    // mounting
-    useEffect(() => {
-        setLoading(true)
-
-        // unmounting
-        return () => {
-            setLoading(false)
-        }
-    }, []);
-
     return (
         <>
             <Helmet>
@@ -43,17 +31,9 @@ const Comment = ({helmetTitle}) => {
                 flexDirection: 'column'
             }}>
                 <CardContent>
-                    <Slide direction='down' in={loading} style={{
-                        transitionDelay: loading ? '500ms' : '0ms'
-                    }}>
-                        <Divider textAlign='center' sx={{'&::before, &::after': {borderColor: 'tomato'}}}>
-                            <Chip color='secondary' label={
-                                <Typography variant='body1' color='black' sx={{textAlign: 'center'}}>
-                                    comments
-                                </Typography>
-                            } sx={{p: 3}} icon={<ForumRounded/>}></Chip>
-                        </Divider>
-                    </Slide>
+
+                    <CustomDivider borderColor='success.main' chipColor='success' align='center'
+                                   icon={<ForumRounded/>} text='comments'/>
                     <Box component='div' sx={{mt: 10, justifyContent: 'center', alignItems: 'center'}}>
                         <Slider {...options}>
                             {
