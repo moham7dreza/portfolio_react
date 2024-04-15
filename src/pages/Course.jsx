@@ -1,21 +1,11 @@
-import {
-    Button,
-    Card,
-    CardActionArea,
-    CardActions,
-    CardContent,
-    CardMedia,
-    Chip,
-    Divider,
-    Slide,
-    Typography
-} from "@mui/material";
+import {Button, Card, CardActionArea, CardActions, CardContent, CardMedia, Slide, Typography} from "@mui/material";
 import {Helmet} from "react-helmet-async";
 import {useEffect, useState} from "react";
 import Grid from "@mui/material/Unstable_Grid2";
 import {SchoolRounded} from "@mui/icons-material";
 import {courses} from "../constants/panel/courses.js";
 import EllipsisText from "react-ellipsis-text";
+import {CustomDivider} from "../components/panel/common/index.js";
 
 
 const Course = ({helmetTitle}) => {
@@ -43,17 +33,9 @@ const Course = ({helmetTitle}) => {
                 overflowY: 'auto'
             }}>
                 <CardContent>
-                    <Slide direction='down' in={loading} style={{
-                        transitionDelay: loading ? '500ms' : '0ms'
-                    }}>
-                        <Divider textAlign='center' sx={{'&::before, &::after': {borderColor: 'tomato'}}}>
-                            <Chip color='secondary' label={
-                                <Typography variant='body1' color='black' sx={{textAlign: 'center'}}>
-                                    i am a backend developer
-                                </Typography>
-                            } sx={{p: 3}} icon={<SchoolRounded/>}></Chip>
-                        </Divider>
-                    </Slide>
+                    <CustomDivider borderColor='primary.main' chipColor='primary' align='center'
+                                   icon={<SchoolRounded/>} text='courses'/>
+
                     <Grid container sx={{mx: 3, mt: 4}}>
                         {
                             courses.map((course, index) => (
