@@ -16,9 +16,14 @@ function App() {
 
     const [pageNumber, setPageNumber] = useState(0)
     // event arg not used but is needed to receive new value for mui functionality
+    // this used for handle page change on tabs
     const handlePageNumber = (event, newPage) => {
         // receive new value on tab changes and set to the value
         setPageNumber(newPage);
+    }
+    // this used for handle page change on mobile when swipes
+    const handlePageChange = (index) => {
+        setPageNumber(index)
     }
 
     const theme = useTheme()
@@ -67,7 +72,7 @@ function App() {
                     {/*we use value state and define some unique indices for each tab that user can change them so the value is updated*/}
                     {/*although we have unique indices in content container*/}
                     {/*so when the selected index from sidebar is equal to content section index the component will be shown*/}
-                    <SwipeableViews index={pageNumber} onChangeIndex={handlePageNumber}>
+                    <SwipeableViews index={pageNumber} onChangeIndex={handlePageChange}>
                         <Page pageNumber={pageNumber} index={0}>
                             <Home helmetTitle='home page'/>
                         </Page>
