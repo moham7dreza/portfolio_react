@@ -16,3 +16,8 @@ Currently, two official plugins are available:
 - npm run build
 - remove all file in public_html folder except cgi-bin
 - copy build directory content to public_html folder
+
+## vite advantages
+
+- hot reload with browser built in es modules
+- build project with rullup js
