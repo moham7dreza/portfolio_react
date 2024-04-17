@@ -21,3 +21,4 @@ Currently, two official plugins are available:
 
 - hot reload with browser built in es modules
 - build project with rullup js
+- install with `npm create vite`
