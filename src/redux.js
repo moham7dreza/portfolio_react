@@ -1,6 +1,8 @@
 // 1. actions -> js object with type filed
 // can be seemed as events on changes on some where
-const action001 = {
+import {configureStore} from "@reduxjs/toolkit";
+
+const sample_action = {
     // type : defile what is event do
     // sections : category/action
     type: 'counter/increment',
@@ -53,3 +55,23 @@ const addNumber = (prev, current) => {
 const initialValue = 0
 
 const total = numbers.reduce(addNumber, initialValue)
+
+
+// 4. store -> state of app which lives in store object
+// when states changes, it stays in store object
+// store creates with reducer and has get function to receive current state value
+
+const store = configureStore({reducer: counterReducer})
+
+store.getState()
+
+// 4.1. dispatch -> only way to update state with dispatch action
+// store run reducer gives to him and save new state inside him, so we can get updated state with getState function
+// action dispatch is seemed like trigger an event in app
+store.dispatch(increment())
+
+// 5. selectors -> can be extract value from state which save inside store object like useSelector hook
+
+const selectCounterValue = state => state.value
+const currentValue = selectCounterValue(store.getState())
+console.log(currentValue)
