@@ -26,3 +26,28 @@ Currently, two official plugins are available:
 - if we have so much states in our app which should use them in whole project
 - and states are repeatedly changes over time or state implementation logic is so complex
 - or we have big project with many developers work on it
+
+## One-way data flow in react
+
+- state is determined app status in specific time
+- ui is rendered depends on state
+- depending on actions on app, state is changed or updated
+- ui is rerendered depending on new state
+
+## One-way data flow in redux
+
+- a. initial setup -> store created by root reducer (configureStore)
+- -> on run : store called root reducer one time and saved returned value as state
+- -> because store should have initial value inside it
+- when ui is rendered, ui components can access to the current state which saved to the store
+- depending on state components decides which thing can be rendered
+- also in each state change inside store, components are subscribed for known that state is changes or not
+- b. update -> event is acted like user clicked on button
+- -> app is dispatched action to store -> store is run reducer with previous state and current action
+- -> save this value as new state
+- -> store is announced to all ui components which subscribed for that the state is changed
+- -> components are looked for what parts of the state are changed which is used by component
+- -> components are rerendered with new state
+
+<img src="./src/assets/ReduxDataFlowDiagram.gif" alt="Alt text">
+
