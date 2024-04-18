@@ -11,7 +11,7 @@ const sample_action = {
 }
 
 // 2. action creators -> return an action
-const increment = number => {
+export const increment = number => {
     return {
         type: 'counter/increment',
         payload: number,
@@ -61,17 +61,22 @@ const total = numbers.reduce(addNumber, initialValue)
 // when states changes, it stays in store object
 // store creates with reducer and has get function to receive current state value
 
-const store = configureStore({reducer: counterReducer})
+export const store = configureStore({reducer: counterReducer})
 
 store.getState()
 
 // 4.1. dispatch -> only way to update state with dispatch action
 // store run reducer gives to him and save new state inside him, so we can get updated state with getState function
 // action dispatch is seemed like trigger an event in app
-store.dispatch(increment())
+// store.dispatch(increment())
 
 // 5. selectors -> can be extract value from state which save inside store object like useSelector hook
 
 const selectCounterValue = state => state.value
-const currentValue = selectCounterValue(store.getState())
+export const currentValue = selectCounterValue(store.getState())
 console.log(currentValue)
+
+// brief
+// we click on button -> action is dispatched -> received by reducer
+// -> reacted to action depends on type -> make a copy of state -> update value on copy
+// -> new value returned -> saved in store
