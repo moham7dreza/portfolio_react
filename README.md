@@ -55,3 +55,13 @@ Currently, two official plugins are available:
 
 - a collection of redux logic (reducer and actions) which is defined in single file
 - slice -> make partitions of root state
+
+## rules
+
+- store should be provided to the root component only and can not be in components
+- for states which have used only in one component we not need to define them in store
+
+## react redux
+
+- useSelector hook -> get state from store
+- useDispatch hook -> dispatch action for change state

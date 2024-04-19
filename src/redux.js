@@ -1,5 +1,5 @@
 // 1. actions -> js object with type filed
-// can be seemed as events on changes on some where
+// can be seemed as events on changes on somewhere
 import {configureStore} from "@reduxjs/toolkit";
 
 const sample_action = {
