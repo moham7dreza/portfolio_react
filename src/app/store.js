@@ -7,3 +7,15 @@ export const store = configureStore({
         counter: counterReducer,
     }
 })
+
+// example for redux thunk only in this file
+// const fetchUserById = userId => {
+//     return async (dispatch, getState) => {
+//         try {
+//             const user = await userApi.fetchById(userId)
+//             dispatch(userLoaded(user))
+//         } catch (err) {
+//
+//         }
+//     }
+// }
