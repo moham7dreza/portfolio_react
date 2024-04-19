@@ -2,7 +2,7 @@ import {useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import {decrement, increment, incrementByAmount, selectCount} from "./features/counter/counterSlice";
+import {decrement, increment, incrementAsync, incrementByAmount, selectCount} from "./features/counter/counterSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 function App() {
@@ -40,7 +40,7 @@ function App() {
                        onChange={(e) => setIncrementAmount(e.target.value)}/>
             </div>
             <div className="card">
-                <button onClick={() => dispatch(incrementByAmount(1))}>
+                <button onClick={() => dispatch(incrementAsync(Number(incrementAmount)))}>
                     add async
                 </button>
             </div>

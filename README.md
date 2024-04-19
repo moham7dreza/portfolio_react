@@ -60,8 +60,24 @@ Currently, two official plugins are available:
 
 - store should be provided to the root component only and can not be in components
 - for states which have used only in one component we not need to define them in store
+- we can not define any async login in reducer
 
 ## react redux
 
 - useSelector hook -> get state from store
 - useDispatch hook -> dispatch action for change state
+
+## redux async
+
+- async -> code is run in background and not waiting
+- sync -> code may be waiting for response
+- according to the rule we can not define async login in reducers
+- ex : we need to get much data from slow api how can be done ?
+- -> before page rendered we need to save data in store then show them
+- how can tell redux wait for get data and save them in store ?
+- this can be done only is store.js file
+- -> but this is not solution we need to defile them in specific components or dispatch action after specific events
+- we can use redux thunk middleware which is type of plugin for redux
+- thunk has inner and outer function
+- inner function has 2 arguments of dispatch and getState which we have access to them in store
+- outer function which create and return thunk function

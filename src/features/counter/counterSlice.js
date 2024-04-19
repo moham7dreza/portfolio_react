@@ -37,3 +37,22 @@ export const {
 // increment -> {type: 'counter/increment'}
 
 export const selectCount = state => state.counter.value
+
+
+// redux thunk -> outer function
+const incrementAsyncExample = amount => {
+    // inner function
+    return async (dispatch, getState) => {
+        setTimeout(() => {
+            dispatch(incrementByAmount(amount))
+        }, 2000)
+    }
+}
+
+// refactor thunk           -> outer function
+export const incrementAsync = amount => dispatch => {
+    // -> inner function
+    setTimeout(() => {
+        dispatch(incrementByAmount(amount))
+    }, 2000)
+}
