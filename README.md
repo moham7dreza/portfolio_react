@@ -51,3 +51,7 @@ Currently, two official plugins are available:
 
 <img src="./src/assets/ReduxDataFlowDiagram.gif" alt="Alt text">
 
+## redux slice
+
+- a collection of redux logic (reducer and actions) which is defined in single file
+- slice -> make partitions of root state
