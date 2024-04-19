@@ -35,3 +35,5 @@ export const {
 } = counterSlice.actions;
 
 // increment -> {type: 'counter/increment'}
+
+export const selectCount = state => state.counter.value

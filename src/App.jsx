@@ -2,12 +2,12 @@ import {useState} from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
-import {decrement, increment, incrementByAmount} from "./features/counter/counterSlice";
+import {decrement, increment, incrementByAmount, selectCount} from "./features/counter/counterSlice";
 import {useDispatch, useSelector} from "react-redux";
 
 function App() {
     const [incrementAmount, setIncrementAmount] = useState(0)
-    const count = useSelector(state => state.value)
+    const count = useSelector(selectCount)
     const dispatch = useDispatch()
 
     return (
