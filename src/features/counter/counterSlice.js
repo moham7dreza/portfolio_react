@@ -39,9 +39,9 @@ export const {
 export const selectCount = state => state.counter.value
 
 
-// redux thunk -> outer function
+// redux thunk -> outer function -> only create and return thunk
 const incrementAsyncExample = amount => {
-    // inner function
+    // inner function -> can access to redux and dispatch action after 1 sec
     return async (dispatch, getState) => {
         setTimeout(() => {
             dispatch(incrementByAmount(amount))

@@ -6,7 +6,9 @@ import {decrement, increment, incrementAsync, incrementByAmount, selectCount} fr
 import {useDispatch, useSelector} from "react-redux";
 
 function App() {
+    // for states which used only in one component don't need to define them in redux store
     const [incrementAmount, setIncrementAmount] = useState(0)
+    // use custom selector for get counter slice from state
     const count = useSelector(selectCount)
     const dispatch = useDispatch()
 
@@ -33,11 +35,13 @@ function App() {
                 </button>
             </div>
             <div className="card">
+                {/*value of state converted to number and passed to action to dispatch it to store reducer*/}
                 <button onClick={() => dispatch(incrementByAmount(Number(incrementAmount)))}>
                     add by amount
                 </button>
                 <input type='number' size={20} value={incrementAmount}
                        onChange={(e) => setIncrementAmount(e.target.value)}/>
+                {/*value received from input is string and must be converted to number*/}
             </div>
             <div className="card">
                 <button onClick={() => dispatch(incrementAsync(Number(incrementAmount)))}>
