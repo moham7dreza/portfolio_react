@@ -10,3 +10,8 @@ Currently, two official plugins are available:
 ## rules
 
 - we can use class instances, functions or unserialized values in redux
+
+## scripts
+
+- json-server --watch db.json -p 9000
+- concurrently "vite --port 3000" "cd server && npm start"
