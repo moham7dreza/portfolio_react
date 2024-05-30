@@ -1,8 +1,9 @@
 import {createBrowserRouter} from "react-router-dom";
 import {MainLayout} from "../layouts/MainLayout.jsx";
 import App from "../App.jsx";
-import {Show} from "../components/blog/Show.jsx";
+import {ShowBlog} from "../components/blog/ShowBlog.jsx";
 import {NotFound} from "../layouts/NotFound.jsx";
+import {CreateBlog} from "../components/blog/CreateBlog.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -16,7 +17,11 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/blogs/:blogId',
-                element: <Show/>
+                element: <ShowBlog/>
+            },
+            {
+                path: '/blogs/create',
+                element: <CreateBlog/>
             }
         ]
     }

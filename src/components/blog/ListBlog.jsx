@@ -1,10 +1,12 @@
 import {useSelector} from "react-redux";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
-const List = () => {
+const ListBlog = () => {
 
     const blogs = useSelector(state => state.blogs)
-    console.log(blogs)
+
+    const nav = useNavigate();
+
     return (
         <>
             {/*<!-- Card Blog -->*/}
@@ -15,6 +17,11 @@ const List = () => {
                         stories</h2>
                     <p className="mt-1 text-gray-600 dark:text-neutral-400">See how game-changing companies are making
                         the most of every engagement with Preline.</p>
+                    <button
+                        className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                        onClick={() => nav('blogs/create')}>
+                        create new blog
+                    </button>
                 </div>
                 {/*<!-- End Title -->*/}
 
@@ -49,4 +56,4 @@ const List = () => {
     )
 }
 
-export default List;
+export default ListBlog;

@@ -1,4 +1,4 @@
-import List from "./components/blog/List.jsx";
+import ListBlog from "./components/blog/ListBlog.jsx";
 
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
         </div>
 
           {/*list of posts*/}
-          <List/>
+        <ListBlog/>
       </>
   )
 }

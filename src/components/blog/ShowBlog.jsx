@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import {useSelector} from "react-redux";
 import {E_404} from "../error/E_404.jsx";
 
-export const Show = () => {
+export const ShowBlog = () => {
     // exact name defined in routes file
     const {blogId} = useParams();
 
