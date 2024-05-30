@@ -1,3 +1,4 @@
+import List from "./components/blog/List.jsx";
 
 
 function App() {
@@ -20,6 +21,9 @@ function App() {
             </a>
           </div>
         </div>
+
+          {/*list of posts*/}
+          <List/>
       </>
   )
 }

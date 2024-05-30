@@ -1,3 +1,5 @@
+import {Link} from "react-router-dom";
+
 export const Navbar = () => {
     return (
         <>
@@ -6,7 +8,8 @@ export const Navbar = () => {
                     className="relative max-w-7xl w-full flex flex-wrap md:grid md:grid-cols-12 basis-full items-center px-4 md:px-8 mx-auto"
                     aria-label="Global">
                     <div className="md:col-span-3">
-                        <a className="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
+                        <Link to={'/'}
+                              className="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
                            href="" aria-label="Preline">
                             <svg className="w-28 h-auto" width="116" height="32" viewBox="0 0 116 32" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
@@ -22,7 +25,7 @@ export const Navbar = () => {
                                 <circle cx="13" cy="16.5214" r="5" className="fill-black dark:fill-white"
                                         fill="currentColor"/>
                             </svg>
-                        </a>
+                        </Link>
                     </div>
 
                     <div className="flex items-center gap-x-2 ms-auto py-1 md:ps-6 md:order-3 md:col-span-3">
