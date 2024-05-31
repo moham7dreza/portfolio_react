@@ -12,12 +12,14 @@ const initialState = {
             date: new Date().toISOString(),
             title: 'new post 1',
             content: 'this is new post ',
+            user_id: "1",
         },
         {
             id: nanoid(),
             date: new Date().toISOString(),
             title: 'new post 2',
             content: 'this is new post ',
+            user_id: "2",
         }
     ]
 }

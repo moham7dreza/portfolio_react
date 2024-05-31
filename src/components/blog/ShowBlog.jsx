@@ -3,6 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {E_404} from "../error/E_404.jsx";
 import {blogDeleted, selectById} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
+import {ShowAuthor} from "./ShowAuthor.jsx";
 
 export const ShowBlog = () => {
     // exact name defined in routes file
@@ -43,9 +44,7 @@ export const ShowBlog = () => {
                                         {/*<!-- Tooltip -->*/}
                                         <div className="hs-tooltip [--trigger:hover] [--placement:bottom] inline-block">
                                             <div className="hs-tooltip-toggle sm:mb-1 block text-start cursor-pointer">
-                  <span className="font-semibold text-gray-800 dark:text-neutral-200">
-                    Leyla Ludic
-                  </span>
+                                                <ShowAuthor userId={blog.user_id}/>
 
                                                 {/*<!-- Dropdown Card -->*/}
                                                 <div

@@ -2,6 +2,7 @@ import {useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {selectBlogs} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
+import {ShowAuthor} from "./ShowAuthor.jsx";
 
 const ListBlog = () => {
 
@@ -44,6 +45,7 @@ const ListBlog = () => {
                                     <h3 className="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600 dark:text-neutral-300 dark:group-hover:text-white">
                                         {blog.title}
                                     </h3>
+                                    <ShowAuthor userId={blog.user_id}/>
                                     <ShowTime timestamp={blog.date}/>
                                 </Link>
                                 {/*<!-- End Card -->*/}
