@@ -1,6 +1,5 @@
 import {useState} from "react";
 import {useDispatch} from "react-redux";
-import {nanoid} from "@reduxjs/toolkit";
 import {blogAdded} from "../../features/blogs/blog.slice.js";
 import {useNavigate} from "react-router-dom";
 
@@ -15,17 +14,10 @@ export const CreateBlog = () => {
     const nav = useNavigate();
 
     const handleSubmit = () => {
-        console.log(title, content)
+        // console.log(title, content)
         if (title && content) {
-            // create action payload because need to add id to payload
-            const data = {
-                id: nanoid(),
-                date: new Date().toISOString(),
-                title,
-                content
-            }
             // dispatch action with payload
-            dispatch(blogAdded(data))
+            dispatch(blogAdded(title, content))
             setTitle('')
             setContent('')
             nav('/')

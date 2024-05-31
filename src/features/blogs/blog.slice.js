@@ -23,9 +23,24 @@ const blogsSlice = createSlice({
     name: 'blogs',
     initialState: initialState,
     reducers: {
-        blogAdded: (state, action) => {
-            // redux toolkit use immer and we can directly change state
-            state.push(action.payload)
+        // redux toolkit use immer and we can directly change state
+        blogAdded: {
+            reducer(state, action) {
+                state.push(action.payload)
+            },
+            // this we be replaced in action payload
+            // before send payload to reducer, payload will prepare
+            prepare(title, content) {
+                // we can implement complex logic here
+                return {
+                    payload: {
+                        id: nanoid(),
+                        date: new Date().toISOString(),
+                        title: title,
+                        content: content,
+                    }
+                }
+            }
         }
     }
 })
