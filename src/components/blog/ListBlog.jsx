@@ -29,7 +29,7 @@ const ListBlog = () => {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
                     {
                         blogs.map(blog => (
-                            <>
+                            <div key={blog.id}>
                                 {/*<!-- Card -->*/}
                                 <Link to={`/blogs/${blog.id}`} className="group block rounded-xl">
                                     <div className="aspect-w-16 aspect-h-9">
@@ -45,7 +45,7 @@ const ListBlog = () => {
                                     </p>
                                 </Link>
                                 {/*<!-- End Card -->*/}
-                            </>
+                            </div>
                         ))
                     }
                 </div>
