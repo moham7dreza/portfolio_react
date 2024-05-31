@@ -35,7 +35,7 @@ const blogsSlice = createSlice({
             },
             // this we be replaced in action payload
             // before send payload to reducer, payload will prepare
-            prepare(title, content) {
+            prepare(title, content, userId) {
                 // we can implement complex logic here
                 return {
                     payload: {
@@ -43,18 +43,20 @@ const blogsSlice = createSlice({
                         date: new Date().toISOString(),
                         title: title,
                         content: content,
+                        user_id: userId
                     }
                 }
             }
         },
         blogUpdated: (state, action) => {
-            const {id, title, content} = action.payload;
+            const {id, title, content, userId} = action.payload;
 
             const blog = state.blogs.find(blog => blog.id === id);
 
             if (blog) {
                 blog.title = title;
                 blog.content = content;
+                blog.user_id = userId;
             }
         },
         blogDeleted: (state, action) => {

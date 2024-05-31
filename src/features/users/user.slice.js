@@ -28,6 +28,8 @@ const usersSlice = createSlice({
     }
 })
 
+export const selectUsers = state => state.users;
+
 export const selectById = (state, userId) => state.users.find(user => user.id === userId)
 
 export default usersSlice.reducer;

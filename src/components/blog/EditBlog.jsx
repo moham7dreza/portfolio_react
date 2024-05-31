@@ -3,12 +3,16 @@ import {useDispatch, useSelector} from "react-redux";
 import {blogUpdated, selectById} from "../../features/blogs/blog.slice.js";
 import {useNavigate, useParams} from "react-router-dom";
 import {E_404} from "../error/E_404.jsx";
+import {selectUsers} from "../../features/users/user.slice.js";
 
 export const EditBlog = () => {
 
     const [title, setTitle] = useState('')
 
     const [content, setContent] = useState('')
+    const [userId, setUserId] = useState('')
+
+    const users = useSelector(selectUsers)
 
     const dispatch = useDispatch();
 
@@ -25,21 +29,24 @@ export const EditBlog = () => {
     useEffect(() => {
         setTitle(blog.title)
         setContent(blog.content)
+        setUserId(blog.user_id)
     }, [blog]);
 
 
     const handleSubmit = () => {
         // console.log(title, content)
-        if (title && content) {
+        if (title && content && userId) {
             // dispatch action with payload
             const payload = {
                 id: blog.id,
                 title,
-                content
+                content,
+                userId,
             }
             dispatch(blogUpdated(payload))
             setTitle('')
             setContent('')
+            setUserId('')
             nav(`/blogs/${blog.id}`)
         }
     }
@@ -72,6 +79,28 @@ export const EditBlog = () => {
                                 <input id="post-title" type="text" name="title" value={title}
                                        onChange={(e) => setTitle(e.target.value)}
                                        className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"/>
+                            </div>
+                            {/*<!-- End Col -->*/}
+
+                            <div className="sm:col-span-3">
+                                <label htmlFor="post-author"
+                                       className="inline-block text-sm text-gray-800 mt-2.5 dark:text-neutral-200">
+                                    post author
+                                </label>
+                            </div>
+                            {/*<!-- End Col -->*/}
+
+                            <div className="sm:col-span-9">
+                                <select id="post-author" name="user_id" value={userId}
+                                        onChange={(e) => setUserId(e.target.value)}
+                                        className="py-2 px-3 pe-9 block w-full border-gray-200 shadow-sm rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600">
+                                    <option selected>Select a author</option>
+                                    {
+                                        users.map((user) => {
+                                            return <option key={user.id} value={user.id}>{user.name}</option>
+                                        })
+                                    }
+                                </select>
                             </div>
                             {/*<!-- End Col -->*/}
 
