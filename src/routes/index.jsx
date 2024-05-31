@@ -4,6 +4,7 @@ import App from "../App.jsx";
 import {ShowBlog} from "../components/blog/ShowBlog.jsx";
 import {NotFound} from "../layouts/NotFound.jsx";
 import {CreateBlog} from "../components/blog/CreateBlog.jsx";
+import {EditBlog} from "../components/blog/EditBlog.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,10 @@ export const router = createBrowserRouter([
             {
                 path: '/blogs/create',
                 element: <CreateBlog/>
+            },
+            {
+                path: '/blogs/edit/:blogId',
+                element: <EditBlog/>
             }
         ]
     }
