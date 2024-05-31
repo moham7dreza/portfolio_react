@@ -18,11 +18,18 @@ const initialState = [
         content: 'this is new post ',
     }
 ]
-
+// according to name and reducers received, action creators will be created
 const blogsSlice = createSlice({
     name: 'blogs',
     initialState: initialState,
-    reducers: {}
+    reducers: {
+        blogAdded: (state, action) => {
+            // redux toolkit use immer and we can directly change state
+            state.push(action.payload)
+        }
+    }
 })
+
+export const {blogAdded} = blogsSlice.actions;
 
 export default blogsSlice.reducer;
