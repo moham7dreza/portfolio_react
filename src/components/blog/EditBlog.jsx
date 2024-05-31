@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {blogUpdated} from "../../features/blogs/blog.slice.js";
+import {blogUpdated, selectById} from "../../features/blogs/blog.slice.js";
 import {useNavigate, useParams} from "react-router-dom";
 import {E_404} from "../error/E_404.jsx";
 
@@ -16,7 +16,7 @@ export const EditBlog = () => {
 
     const {blogId} = useParams();
 
-    const blog = useSelector(state => state.blogs.find(blog => blog.id == blogId))
+    const blog = useSelector(state => selectById(state, blogId))
 
     if (!blog) {
         return <E_404/>

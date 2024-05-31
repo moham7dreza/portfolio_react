@@ -1,9 +1,10 @@
 import {useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
+import {selectBlogs} from "../../features/blogs/blog.slice.js";
 
 const ListBlog = () => {
 
-    const blogs = useSelector(state => state.blogs)
+    const blogs = useSelector(selectBlogs)
 
     const nav = useNavigate();
 

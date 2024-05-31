@@ -1,18 +1,26 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {E_404} from "../error/E_404.jsx";
+import {blogDeleted, selectById} from "../../features/blogs/blog.slice.js";
 
 export const ShowBlog = () => {
     // exact name defined in routes file
     const {blogId} = useParams();
 
-    const blog = useSelector(state => state.blogs.find(blog => blog.id === blogId))
+    const dispatch = useDispatch();
+
+    const blog = useSelector(state => selectById(state, blogId));
 
     if (!blog) {
         return <E_404/>
     }
 
     const nav = useNavigate();
+
+    const handleDelete = () => {
+        dispatch(blogDeleted({id: blog.id}))
+        nav('/')
+    }
 
     return (
         <>
@@ -145,10 +153,16 @@ export const ShowBlog = () => {
                             <p className="text-lg text-gray-800 dark:text-neutral-200">
                                 {blog.content}
                             </p>
-                            <Link to={`/blogs/edit/${blog.id}`}
-                                  className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
-                                edit blog
-                            </Link>
+                            <div className="flex justify-center items-center gap-4">
+                                <Link to={`/blogs/edit/${blog.id}`}
+                                      className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
+                                    edit blog
+                                </Link>
+                                <button onClick={handleDelete}
+                                        className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
+                                    delete blog
+                                </button>
+                            </div>
                         </div>
 
                         <p className="text-lg text-gray-800 dark:text-neutral-200">We're proud to be a part of creating
