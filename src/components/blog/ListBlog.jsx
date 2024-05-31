@@ -5,7 +5,9 @@ import {ShowTime} from "../ShowTime.jsx";
 
 const ListBlog = () => {
 
-    const blogs = useSelector(selectBlogs)
+    let blogs = useSelector(selectBlogs)
+    // sort blogs order by date ascending
+    blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));
 
     const nav = useNavigate();
 
