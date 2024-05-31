@@ -1,6 +1,7 @@
 import {useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {selectBlogs} from "../../features/blogs/blog.slice.js";
+import {ShowTime} from "../ShowTime.jsx";
 
 const ListBlog = () => {
 
@@ -41,9 +42,7 @@ const ListBlog = () => {
                                     <h3 className="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600 dark:text-neutral-300 dark:group-hover:text-white">
                                         {blog.title}
                                     </h3>
-                                    <p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
-                                        {blog.date}
-                                    </p>
+                                    <ShowTime timestamp={blog.date}/>
                                 </Link>
                                 {/*<!-- End Card -->*/}
                             </div>
