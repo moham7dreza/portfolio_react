@@ -13,6 +13,13 @@ const initialState = {
             title: 'new post 1',
             content: 'this is new post ',
             user_id: "1",
+            reactions: {
+                thumbUp: 0,
+                hooray: 0,
+                heart: 0,
+                rocket: 0,
+                eyes: 0,
+            }
         },
         {
             id: nanoid(),
@@ -20,6 +27,13 @@ const initialState = {
             title: 'new post 2',
             content: 'this is new post ',
             user_id: "2",
+            reactions: {
+                thumbUp: 0,
+                hooray: 0,
+                heart: 0,
+                rocket: 0,
+                eyes: 0,
+            }
         }
     ]
 }
@@ -64,6 +78,15 @@ const blogsSlice = createSlice({
             // return all post except deleted post,
             // but we can use filter method on initial state `object` -> on blogs key we can
             state.blogs = state.blogs.filter(blog => blog.id !== id);
+        },
+        reactionAdded: (state, action) => {
+            const {id, reaction} = action.payload;
+
+            const blog = state.blogs.find(blog => blog.id === id);
+
+            if (blog) {
+                blog.reactions[reaction]++;
+            }
         }
     }
 })
@@ -78,7 +101,8 @@ export const selectById = (state, blogId) => state.blogs.blogs.find(blog => blog
 export const {
     blogAdded,
     blogUpdated,
-    blogDeleted
+    blogDeleted,
+    reactionAdded,
 } = blogsSlice.actions;
 
 export default blogsSlice.reducer;

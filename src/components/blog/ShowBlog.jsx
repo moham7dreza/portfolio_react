@@ -4,6 +4,7 @@ import {E_404} from "../error/E_404.jsx";
 import {blogDeleted, selectById} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {ShowAuthor} from "./ShowAuthor.jsx";
+import {ReactionButtons} from "./ReactionButtons.jsx";
 
 export const ShowBlog = () => {
     // exact name defined in routes file
@@ -164,6 +165,7 @@ export const ShowBlog = () => {
                                     delete blog
                                 </button>
                             </div>
+                            <ReactionButtons blog={blog}/>
                         </div>
 
                         <p className="text-lg text-gray-800 dark:text-neutral-200">We're proud to be a part of creating

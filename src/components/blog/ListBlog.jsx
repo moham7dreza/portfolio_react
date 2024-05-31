@@ -3,6 +3,7 @@ import {Link, useNavigate} from "react-router-dom";
 import {selectBlogs} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {ShowAuthor} from "./ShowAuthor.jsx";
+import {ReactionButtons} from "./ReactionButtons.jsx";
 
 const ListBlog = () => {
 
@@ -47,6 +48,7 @@ const ListBlog = () => {
                                     </h3>
                                     <ShowAuthor userId={blog.user_id}/>
                                     <ShowTime timestamp={blog.date}/>
+                                    <ReactionButtons blog={blog}/>
                                 </Link>
                                 {/*<!-- End Card -->*/}
                             </div>
