@@ -88,6 +88,7 @@ const blogsSlice = createSlice({
 //                                        slice name
 export const selectBlogs = state => state.blogs.blogs;
 export const selectStatus = state => state.blogs.status;
+export const selectError = state => state.blogs.error;
 //                                              key in state
 
 export const selectById = (state, blogId) => state.blogs.blogs.find(blog => blog.id === blogId)
