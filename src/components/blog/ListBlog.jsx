@@ -1,17 +1,28 @@
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
-import {selectBlogs} from "../../features/blogs/blog.slice.js";
+import {fetchBlogs, selectBlogs, selectStatus} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {ShowAuthor} from "./ShowAuthor.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
+import {useEffect} from "react";
 
 const ListBlog = () => {
 
     let blogs = useSelector(selectBlogs)
+    const blogsStatus = useSelector(selectStatus)
     // sort blogs order by date ascending
     blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));
 
     const nav = useNavigate();
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        console.log(blogsStatus)
+        // only one time need to fetch blogs
+        if (blogsStatus === 'idle') {
+            dispatch(fetchBlogs())
+        }
+    }, [blogsStatus, dispatch]);
 
     return (
         <>

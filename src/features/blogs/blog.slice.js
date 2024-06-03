@@ -1,42 +1,24 @@
-import {createSlice, nanoid} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, nanoid} from "@reduxjs/toolkit";
+import * as BlogService from "../../services/BlogService.js";
 
 // we create hardcoded data for initial state
 // we can not create class instances, not serialized values or functions
 // redux state and actions must be `plain js` like objects, arrays, ...
 // initial state must be object
 const initialState = {
-    blogs: [
-        {
-            id: nanoid(),
-            // in redux, we can not create class instant like new Date() but we can convert it to string
-            date: new Date().toISOString(),
-            title: 'new post 1',
-            content: 'this is new post ',
-            user_id: "kEVfAUsjWWIXZgbsYpbYP1",
-            reactions: {
-                thumbUp: 0,
-                hooray: 0,
-                heart: 0,
-                rocket: 0,
-                eyes: 0,
-            }
-        },
-        {
-            id: nanoid(),
-            date: new Date().toISOString(),
-            title: 'new post 2',
-            content: 'this is new post ',
-            user_id: "kEVfAUsjWWIXZgbsYpbYP2",
-            reactions: {
-                thumbUp: 0,
-                hooray: 0,
-                heart: 0,
-                rocket: 0,
-                eyes: 0,
-            }
-        }
-    ]
+    blogs: [],
+    status: "idle",
+    error: null,
 }
+
+export const fetchBlogs = createAsyncThunk(
+    "blogs/fetchBlogs",
+    async () => {
+        const response = await BlogService.index()
+        return response.data
+    }
+)
+
 // according to name and reducers received, action creators will be created
 const blogsSlice = createSlice({
     name: 'blogs',
@@ -88,12 +70,24 @@ const blogsSlice = createSlice({
                 blog.reactions[reaction]++;
             }
         }
+    },
+    extraReducers: builder => {
+        builder.addCase(fetchBlogs.pending, (state, action) => {
+            state.status = 'loading'
+        }).addCase(fetchBlogs.fulfilled, (state, action) => {
+            state.status = 'completed'
+            state.blogs = action.payload
+        }).addCase(fetchBlogs.rejected, (state, action) => {
+            state.status = 'failed'
+            state.error = action.error.message
+        })
     }
 })
 
 // selectors
 //                                        slice name
 export const selectBlogs = state => state.blogs.blogs;
+export const selectStatus = state => state.blogs.status;
 //                                              key in state
 
 export const selectById = (state, blogId) => state.blogs.blogs.find(blog => blog.id === blogId)
