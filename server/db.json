@@ -1,4 +1,29 @@
 {
   "blogs": [],
-  "users": []
+  "users": [
+    {
+      "id": "kEVfAUsjWWIXZgbsYpbYP1",
+      "name": "John 1"
+    },
+    {
+      "id": "kEVfAUsjWWIXZgbsYpbYP2",
+      "name": "John 2"
+    },
+    {
+      "id": "kEVfAUsjWWIXZgbsYpbYP3",
+      "name": "John 3"
+    },
+    {
+      "id": "kEVfAUsjWWIXZgbsYpbYP4",
+      "name": "John 4"
+    },
+    {
+      "id": "kEVfAUsjWWIXZgbsYpbYP5",
+      "name": "John 5"
+    },
+    {
+      "id": "kEVfAUsjWWIXZgbsYpbYP6",
+      "name": "John 6"
+    }
+  ]
 }

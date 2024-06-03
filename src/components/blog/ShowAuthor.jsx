@@ -1,13 +1,13 @@
 import {useSelector} from "react-redux";
 import {selectById} from "../../features/users/user.slice.js";
-import {E_404} from "../error/E_404.jsx";
 
 export const ShowAuthor = ({userId}) => {
 
     const author = useSelector(state => selectById(state, userId))
 
     if (!author) {
-        return <E_404/>
+        // return <E_404/>
+        return 'undefined user not found';
     }
 
     return (

@@ -1,5 +1,5 @@
 import {createAsyncThunk, createSlice, nanoid} from "@reduxjs/toolkit";
-import * as UserService from "../../services/BlogService.js";
+import * as UserService from "../../services/UserService.js";
 
 const usersSlice = createSlice({
     name: 'users',
@@ -11,6 +11,11 @@ const usersSlice = createSlice({
                 name: action.payload
             })
         }
+    },
+    extraReducers(builder) {
+        builder.addCase(fetchUsers.fulfilled, (state, action) => {
+            return action.payload;//immer js will replace this with current state value
+        })
     }
 })
 

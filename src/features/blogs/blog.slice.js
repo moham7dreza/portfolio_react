@@ -12,7 +12,7 @@ const initialState = {
             date: new Date().toISOString(),
             title: 'new post 1',
             content: 'this is new post ',
-            user_id: "1",
+            user_id: "kEVfAUsjWWIXZgbsYpbYP1",
             reactions: {
                 thumbUp: 0,
                 hooray: 0,
@@ -26,7 +26,7 @@ const initialState = {
             date: new Date().toISOString(),
             title: 'new post 2',
             content: 'this is new post ',
-            user_id: "2",
+            user_id: "kEVfAUsjWWIXZgbsYpbYP2",
             reactions: {
                 thumbUp: 0,
                 hooray: 0,
