@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {fetchBlogs, selectBlogs, selectError, selectStatus} from "../../features/blogs/blog.slice.js";
+import {fetchBlogs, selectAuthorBlogs, selectError, selectStatus} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "./AuthorName.jsx";
 import {ReactionButtons} from "../blog/ReactionButtons.jsx";
@@ -41,10 +41,7 @@ const AuthorListBlog = () => {
     const {authorId} = useParams();
     const author = useSelector(state => selectById(state, authorId))
 
-    let blogs = useSelector(state => {
-        const blogs = selectBlogs(state)
-        return blogs.filter(blog => blog.user_id === author.id)
-    })
+    let blogs = useSelector(state => selectAuthorBlogs(state, authorId))
 
     // sort blogs order by date ascending
     blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));

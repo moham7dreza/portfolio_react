@@ -28,3 +28,11 @@ Currently, two official plugins are available:
 - but in redux, createSlice allow to use prepare callback function when defining reducer
 - prepare callback function can receive input arguments and create random values and can run only synchronously codes
 - and return object with type, payload, meta(explain action), error(bool) keys inside it
+
+# Hints
+
+- we must avoid from rerendering which does not have any reason -> with memo, useMemo, useCallback
+- in redux, also selectors can be rerun and may be affected on rerendering and must be control them
+- Reselect Library -> will create selector functions which memoized -> allow code to run when data changed (not to allow
+  when data not changed)
+- and exclusively create for work with redux

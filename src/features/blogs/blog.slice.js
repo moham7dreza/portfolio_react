@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, current, nanoid} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSelector, createSlice, current, nanoid} from "@reduxjs/toolkit";
 import * as BlogService from "../../services/BlogService.js";
 
 // we create hardcoded data for initial state
@@ -131,6 +131,10 @@ const blogsSlice = createSlice({
 export const selectBlogs = state => state.blogs.blogs;
 export const selectStatus = state => state.blogs.status;
 export const selectError = state => state.blogs.error;
+export const selectAuthorBlogs = createSelector(
+    [selectBlogs, (state, userId) => userId],
+    (blogs, userId) => blogs.filter(blog => blog.user_id === userId)
+)
 //                                              key in state
 
 export const selectById = (state, blogId) => state.blogs.blogs.find(blog => blog.id === blogId)
