@@ -1,6 +1,6 @@
 import {useSelector} from "react-redux";
 import {selectUsers} from "../../features/users/user.slice.js";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 
 const AuthorsList = ({authors}) => {
     return (
@@ -60,9 +60,11 @@ const AuthorsList = ({authors}) => {
     )
 }
 
-export const Authors = () => {
+export const ListAuthor = () => {
 
     const authors = useSelector(selectUsers)
+
+    const nav = useNavigate()
 
     return (
         <>
@@ -72,6 +74,11 @@ export const Authors = () => {
                 <div className="max-w-2xl mx-auto text-center mb-10 lg:mb-14">
                     <h2 className="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">Meet the crew</h2>
                     <p className="mt-1 text-gray-600 dark:text-neutral-400">Creative people</p>
+                    <button
+                        className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                        onClick={() => nav('/authors/create')}>
+                        create new author
+                    </button>
                 </div>
                 {/*<!-- End Title -->*/}
 

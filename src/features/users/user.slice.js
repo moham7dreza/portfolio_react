@@ -15,6 +15,8 @@ const usersSlice = createSlice({
     extraReducers(builder) {
         builder.addCase(fetchUsers.fulfilled, (state, action) => {
             return action.payload;//immer js will replace this with current state value
+        }).addCase(createUser.fulfilled, (state, action) => {
+            state.push(action.payload)
         })
     }
 })

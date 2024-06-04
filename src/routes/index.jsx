@@ -5,8 +5,9 @@ import {ShowBlog} from "../components/blog/ShowBlog.jsx";
 import {NotFound} from "../layouts/NotFound.jsx";
 import {CreateBlog} from "../components/blog/CreateBlog.jsx";
 import {EditBlog} from "../components/blog/EditBlog.jsx";
-import {Authors} from "../components/user/Authors.jsx";
+import {ListAuthor} from "../components/user/ListAuthor.jsx";
 import AuthorListBlog from "../components/user/AuthorListBlog.jsx";
+import {CreateAuthor} from "../components/user/CreateAuthor.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -32,11 +33,15 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/blogs/authors',
-                element: <Authors/>
+                element: <ListAuthor/>
             },
             {
                 path: '/blogs/author/:authorId/posts',
                 element: <AuthorListBlog/>
+            },
+            {
+                path: '/authors/create',
+                element: <CreateAuthor/>
             }
         ]
     }

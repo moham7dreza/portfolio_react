@@ -76,7 +76,7 @@ const ListBlog = () => {
                         the most of every engagement with Preline.</p>
                     <button
                         className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
-                        onClick={() => nav('blogs/create')}>
+                        onClick={() => nav('/blogs/create')}>
                         create new blog
                     </button>
                 </div>
