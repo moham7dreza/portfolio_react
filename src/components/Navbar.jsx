@@ -10,7 +10,7 @@ export const Navbar = () => {
                     <div className="md:col-span-3">
                         <Link to={'/'}
                               className="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
-                           href="" aria-label="Preline">
+                              href="" aria-label="Preline">
                             <svg className="w-28 h-auto" width="116" height="32" viewBox="0 0 116 32" fill="none"
                                  xmlns="http://www.w3.org/2000/svg">
                                 <path
@@ -71,8 +71,10 @@ export const Navbar = () => {
                                    href="#" aria-current="page">Work</a>
                             </div>
                             <div>
-                                <a className="inline-block text-black hover:text-gray-600 dark:text-white dark:hover:text-neutral-300"
-                                   href="#">Services</a>
+                                <Link to={'/blogs/authors'}
+                                      className="inline-block text-black hover:text-gray-600 dark:text-white dark:hover:text-neutral-300">
+                                    Authors
+                                </Link>
                             </div>
                             <div>
                                 <a className="inline-block text-black hover:text-gray-600 dark:text-white dark:hover:text-neutral-300"

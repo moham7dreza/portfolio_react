@@ -5,6 +5,7 @@ import {ShowBlog} from "../components/blog/ShowBlog.jsx";
 import {NotFound} from "../layouts/NotFound.jsx";
 import {CreateBlog} from "../components/blog/CreateBlog.jsx";
 import {EditBlog} from "../components/blog/EditBlog.jsx";
+import {Authors} from "../components/blog/Authors.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -27,6 +28,10 @@ export const router = createBrowserRouter([
             {
                 path: '/blogs/edit/:blogId',
                 element: <EditBlog/>
+            },
+            {
+                path: '/blogs/authors',
+                element: <Authors/>
             }
         ]
     }
