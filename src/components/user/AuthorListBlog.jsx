@@ -6,7 +6,7 @@ import {AuthorName} from "./AuthorName.jsx";
 import {ReactionButtons} from "../blog/ReactionButtons.jsx";
 import {useEffect} from "react";
 import {Spinner} from "../Spinner.jsx";
-import {selectById} from "../../features/users/user.slice.js";
+import {deleteUser, selectById} from "../../features/users/user.slice.js";
 
 const Blogs = ({blogs}) => {
     return (
@@ -81,6 +81,11 @@ const AuthorListBlog = () => {
         content = blogsError
     }
 
+    const handleDelete = () => {
+        dispatch(deleteUser(author.id))
+        nav('/blogs/authors')
+    }
+
     return (
         <>
             {/*<!-- Card Blog -->*/}
@@ -91,11 +96,17 @@ const AuthorListBlog = () => {
                         stories</h2>
                     <p className="mt-1 text-gray-600 dark:text-neutral-400">See how game-changing companies are making
                         the most of every engagement with Preline.</p>
-                    <button
-                        className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
-                        onClick={() => nav('/blogs/create')}>
-                        create new blog
-                    </button>
+                    <div className="flex justify-center items-center gap-4">
+                        <button
+                            className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none"
+                            onClick={() => nav('/blogs/create')}>
+                            create new blog
+                        </button>
+                        <button onClick={handleDelete}
+                                className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
+                            delete author
+                        </button>
+                    </div>
                 </div>
                 {/*<!-- End Title -->*/}
 

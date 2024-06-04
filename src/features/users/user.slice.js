@@ -17,6 +17,9 @@ const usersSlice = createSlice({
             return action.payload;//immer js will replace this with current state value
         }).addCase(createUser.fulfilled, (state, action) => {
             state.push(action.payload)
+        }).addCase(deleteUser.fulfilled, (state, action) => {
+            const index = state.findIndex(user => user.id === action.payload)
+            state.splice(index, 1)
         })
     }
 })
