@@ -19,6 +19,14 @@ export const fetchBlogs = createAsyncThunk(
     }
 )
 
+export const addNewBlog = createAsyncThunk(
+    "blogs/addNewBlog",
+    async (blog) => {
+        const response = await BlogService.store(blog)
+        return response.data
+    }
+)
+
 // according to name and reducers received, action creators will be created
 const blogsSlice = createSlice({
     name: 'blogs',
@@ -39,7 +47,14 @@ const blogsSlice = createSlice({
                         date: new Date().toISOString(),
                         title: title,
                         content: content,
-                        user_id: userId
+                        user_id: userId,
+                        reactions: {
+                            thumbUp: 0,
+                            hooray: 0,
+                            heart: 0,
+                            rocket: 0,
+                            eyes: 0
+                        }
                     }
                 }
             }
@@ -80,6 +95,8 @@ const blogsSlice = createSlice({
         }).addCase(fetchBlogs.rejected, (state, action) => {
             state.status = 'failed'
             state.error = action.error.message
+        }).addCase(addNewBlog.fulfilled, (state, action) => {
+            state.blogs.push(action.payload)
         })
     }
 })
