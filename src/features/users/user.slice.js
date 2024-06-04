@@ -12,14 +12,13 @@ const usersSlice = createSlice({
             })
         }
     },
-    extraReducers(builder) {
+    extraReducers: builder => {
         builder.addCase(fetchUsers.fulfilled, (state, action) => {
             return action.payload;//immer js will replace this with current state value
         }).addCase(createUser.fulfilled, (state, action) => {
             state.push(action.payload)
         }).addCase(deleteUser.fulfilled, (state, action) => {
-            const index = state.findIndex(user => user.id === action.payload)
-            state.splice(index, 1)
+            return state.filter(user => user.id !== action.payload)
         })
     }
 })
