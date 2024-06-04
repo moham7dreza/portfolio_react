@@ -1,14 +1,16 @@
 import {useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {blogAdded} from "../../features/blogs/blog.slice.js";
+import {addNewBlog} from "../../features/blogs/blog.slice.js";
 import {useNavigate} from "react-router-dom";
 import {selectUsers} from "../../features/users/user.slice.js";
+import {nanoid} from "@reduxjs/toolkit";
 
 export const CreateBlog = () => {
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [userId, setUserId] = useState('')
+    const [requestStatus, setRequestStatus] = useState('idle')
 
     const users = useSelector(selectUsers)
 
@@ -17,17 +19,39 @@ export const CreateBlog = () => {
     const nav = useNavigate();
 
     // simple validation
-    const canSave = [title, content, userId].every(Boolean)
+    const canSave = [title, content, userId].every(Boolean) && requestStatus === 'idle'
 
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         // console.log(title, content)
         if (canSave) {
-            // dispatch action with payload
-            dispatch(blogAdded(title, content, userId));
-            setTitle('')
-            setContent('')
-            setUserId('')
-            nav('/')
+            try {
+                setRequestStatus('pending')
+                // dispatch action with payload
+                const payload = {
+                    id: nanoid(),
+                    date: new Date().toISOString(),
+                    title: title,
+                    content: content,
+                    user_id: userId,
+                    reactions: {
+                        thumbUp: 0,
+                        hooray: 0,
+                        heart: 0,
+                        rocket: 0,
+                        eyes: 0
+                    }
+                }
+                await dispatch(addNewBlog(payload));
+                setTitle('')
+                setContent('')
+                setUserId('')
+                nav('/')
+            } catch (e) {
+                console.error('failed to add new blog', e)
+            } finally {
+                // finally run in all cases
+                setRequestStatus('idle')
+            }
         }
     }
     return (<>

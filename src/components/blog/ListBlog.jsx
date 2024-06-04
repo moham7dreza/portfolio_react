@@ -6,7 +6,6 @@ import {ShowAuthor} from "./ShowAuthor.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
 import {useEffect} from "react";
 import {Spinner} from "../Spinner.jsx";
-import {E_404} from "../error/E_404.jsx";
 
 const ListBlog = () => {
 
@@ -52,7 +51,7 @@ const ListBlog = () => {
             </div>
         ))
     } else if (blogsStatus === 'failed') {
-        content = <E_404/>
+        content = blogsError
     }
 
     return (
