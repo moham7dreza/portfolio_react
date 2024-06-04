@@ -4,44 +4,38 @@ import {fetchBlogs, selectBlogs, selectError, selectStatus} from "../../features
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "../user/AuthorName.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
-import {useEffect} from "react";
+import {memo, useEffect} from "react";
 import {Spinner} from "../Spinner.jsx";
 
-const Blogs = ({blogs}) => {
+let Blog = ({blog}) => {
     return (
-        <>
-            {
-                blogs.map(blog => (
-                    <div key={blog.id}>
-                        {/*<!-- Card -->*/}
-                        <Link to={`/blogs/${blog.id}`} className="group block rounded-xl">
-                            <div className="aspect-w-16 aspect-h-9">
-                                <img className="w-full object-cover rounded-xl"
-                                     src="https://images.unsplash.com/photo-1668869713519-9bcbb0da7171?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80"
-                                     alt="Image Description"/>
-                            </div>
-                            <h3 className="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600 dark:text-neutral-300 dark:group-hover:text-white">
-                                {blog.title}
-                            </h3>
-                            <AuthorName userId={blog.user_id}/>
-                            <ShowTime timestamp={blog.date}/>
-                            <ReactionButtons blog={blog}/>
-                        </Link>
-                        {/*<!-- End Card -->*/}
-                    </div>
-                ))
-            }
-        </>
+        <div>
+            {/*<!-- Card -->*/}
+            <Link to={`/blogs/${blog.id}`} className="group block rounded-xl">
+                <div className="aspect-w-16 aspect-h-9">
+                    <img className="w-full object-cover rounded-xl"
+                         src="https://images.unsplash.com/photo-1668869713519-9bcbb0da7171?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=988&q=80"
+                         alt="Image Description"/>
+                </div>
+                <h3 className="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600 dark:text-neutral-300 dark:group-hover:text-white">
+                    {blog.title}
+                </h3>
+                <AuthorName userId={blog.user_id}/>
+                <ShowTime timestamp={blog.date}/>
+                <ReactionButtons blog={blog}/>
+            </Link>
+            {/*<!-- End Card -->*/}
+        </div>
     )
 }
+// when input param changed then rerender
+Blog = memo(Blog)
 
 const ListBlog = () => {
 
     let blogs = useSelector(selectBlogs)
     const blogsStatus = useSelector(selectStatus)
     const blogsError = useSelector(selectError)
-    // sort blogs order by date ascending
-    blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));
 
     const nav = useNavigate();
     const dispatch = useDispatch();
@@ -59,7 +53,12 @@ const ListBlog = () => {
     if (blogsStatus === 'loading') {
         content = <Spinner/>
     } else if (blogsStatus === 'completed') {
-        content = <Blogs blogs={blogs}/>
+        // sort blogs order by date ascending
+        blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));
+
+        content = blogs.map((blog) => (
+            <Blog key={blog.id} blog={blog}/>
+        ))
     } else if (blogsStatus === 'failed') {
         content = blogsError
     }
