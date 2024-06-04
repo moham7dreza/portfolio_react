@@ -2,7 +2,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
 import {fetchBlogs, selectBlogs, selectError, selectStatus} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
-import {ShowAuthor} from "./ShowAuthor.jsx";
+import {AuthorName} from "../user/AuthorName.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
 import {useEffect} from "react";
 import {Spinner} from "../Spinner.jsx";
@@ -23,7 +23,7 @@ const Blogs = ({blogs}) => {
                             <h3 className="mt-2 text-lg font-medium text-gray-800 group-hover:text-blue-600 dark:text-neutral-300 dark:group-hover:text-white">
                                 {blog.title}
                             </h3>
-                            <ShowAuthor userId={blog.user_id}/>
+                            <AuthorName userId={blog.user_id}/>
                             <ShowTime timestamp={blog.date}/>
                             <ReactionButtons blog={blog}/>
                         </Link>

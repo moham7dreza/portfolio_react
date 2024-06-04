@@ -1,7 +1,7 @@
 import {useSelector} from "react-redux";
 import {selectById} from "../../features/users/user.slice.js";
 
-export const ShowAuthor = ({userId}) => {
+export const AuthorName = ({userId}) => {
 
     const author = useSelector(state => selectById(state, userId))
 

@@ -5,8 +5,8 @@ import {ShowBlog} from "../components/blog/ShowBlog.jsx";
 import {NotFound} from "../layouts/NotFound.jsx";
 import {CreateBlog} from "../components/blog/CreateBlog.jsx";
 import {EditBlog} from "../components/blog/EditBlog.jsx";
-import {Authors} from "../components/blog/Authors.jsx";
-import AuthorListBlog from "../components/blog/AuthorListBlog.jsx";
+import {Authors} from "../components/user/Authors.jsx";
+import AuthorListBlog from "../components/user/AuthorListBlog.jsx";
 
 export const router = createBrowserRouter([
     {
