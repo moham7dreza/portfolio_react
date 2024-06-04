@@ -1,7 +1,7 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {E_404} from "../error/E_404.jsx";
-import {blogDeleted, selectById} from "../../features/blogs/blog.slice.js";
+import {deleteBlog, selectById} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {ShowAuthor} from "./ShowAuthor.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
@@ -21,7 +21,7 @@ export const ShowBlog = () => {
     const nav = useNavigate();
 
     const handleDelete = () => {
-        dispatch(blogDeleted({id: blog.id}))
+        dispatch(deleteBlog(blog.id))
         nav('/')
     }
 

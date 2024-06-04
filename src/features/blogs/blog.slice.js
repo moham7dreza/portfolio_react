@@ -1,4 +1,4 @@
-import {createAsyncThunk, createSlice, nanoid} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSlice, current, nanoid} from "@reduxjs/toolkit";
 import * as BlogService from "../../services/BlogService.js";
 
 // we create hardcoded data for initial state
@@ -24,6 +24,14 @@ export const addNewBlog = createAsyncThunk(
     async (blog) => {
         const response = await BlogService.store(blog)
         return response.data
+    }
+)
+
+export const deleteBlog = createAsyncThunk(
+    "blogs/deleteBlog",
+    async (id) => {
+        await BlogService.destroy(id) // wait for promise resolved then go
+        return id // we return id which will access in extra reducer
     }
 )
 
@@ -75,6 +83,10 @@ const blogsSlice = createSlice({
             // return all post except deleted post,
             // but we can use filter method on initial state `object` -> on blogs key we can
             state.blogs = state.blogs.filter(blog => blog.id !== id);
+            // console.log(state.blogs); // proxy object : create an object from original object and if we change it, not affected on original
+            // this is because of immer and the state give to us, is not original state, but it is draft
+            // we can change state directly and immer js will replace it in background which will be pure
+            console.log(current(state)) // but we can use current to get state in reducer when we need to debug
         },
         reactionAdded: (state, action) => {
             const {id, reaction} = action.payload;
@@ -97,6 +109,8 @@ const blogsSlice = createSlice({
             state.error = action.error.message
         }).addCase(addNewBlog.fulfilled, (state, action) => {
             state.blogs.push(action.payload)
+        }).addCase(deleteBlog.fulfilled, (state, action) => {
+            state.blogs = state.blogs.filter(blog => blog.id !== action.payload)
         })
     }
 })
