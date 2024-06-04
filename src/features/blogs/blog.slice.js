@@ -35,6 +35,14 @@ export const deleteBlog = createAsyncThunk(
     }
 )
 
+export const updateBlog = createAsyncThunk(
+    "blogs/updateBlog",
+    async (blog) => {
+        const response = await BlogService.update(blog, blog.id)
+        return response.data
+    }
+)
+
 // according to name and reducers received, action creators will be created
 const blogsSlice = createSlice({
     name: 'blogs',
@@ -111,6 +119,9 @@ const blogsSlice = createSlice({
             state.blogs.push(action.payload)
         }).addCase(deleteBlog.fulfilled, (state, action) => {
             state.blogs = state.blogs.filter(blog => blog.id !== action.payload)
+        }).addCase(updateBlog.fulfilled, (state, action) => {
+            const index = state.blogs.findIndex(blog => blog.id === action.payload.id)
+            state.blogs[index] = action.payload
         })
     }
 })

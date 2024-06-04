@@ -30,17 +30,11 @@
     },
     {
       "id": "6WezlJmXps-o6AIyD9n-T",
-      "date": "2024-06-04T10:12:56.385Z",
-      "title": "qwdwqdq",
+      "title": "test post",
       "content": "qwdqwdq",
-      "user_id": "kEVfAUsjWWIXZgbsYpbYP1",
-      "reactions": {
-        "thumbUp": 0,
-        "hooray": 0,
-        "heart": 0,
-        "rocket": 0,
-        "eyes": 0
-      }
+      "userId": "kEVfAUsjWWIXZgbsYpbYP1",
+      "date": "2024-06-04T10:12:56.385Z",
+      "reactions": {}
     }
   ],
   "users": [

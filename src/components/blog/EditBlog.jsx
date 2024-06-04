@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {blogUpdated, selectById} from "../../features/blogs/blog.slice.js";
+import {selectById, updateBlog} from "../../features/blogs/blog.slice.js";
 import {useNavigate, useParams} from "react-router-dom";
 import {E_404} from "../error/E_404.jsx";
 import {selectUsers} from "../../features/users/user.slice.js";
@@ -42,8 +42,16 @@ export const EditBlog = () => {
                 title,
                 content,
                 userId,
+                date: blog.date,
+                reactions: {
+                    thumbUp: blog.thumbUp,
+                    hooray: blog.hooray,
+                    heart: blog.heart,
+                    rocket: blog.rocket,
+                    eyes: blog.eyes
+                }
             }
-            dispatch(blogUpdated(payload))
+            dispatch(updateBlog(payload))
             setTitle('')
             setContent('')
             setUserId('')
