@@ -1,7 +1,9 @@
 import {createAsyncThunk, createEntityAdapter, createSelector, createSlice, current, nanoid} from "@reduxjs/toolkit";
 import * as BlogService from "../../services/BlogService.js";
 
+// adapter give many reducer functions to work with normalized state
 const blogAdapter = createEntityAdapter({
+    // selectId: "blogId", if key of id is different
     // sort ids array by blogs dates
     sortComparer: (a, b) => b.date.localeCompare(a.date)
 })
@@ -135,17 +137,22 @@ const blogsSlice = createSlice({
         }).addCase(fetchBlogs.rejected, (state, action) => {
             state.status = 'failed'
             state.error = action.error.message
-        }).addCase(addNewBlog.fulfilled, (state, action) => {
-            // state.blogs.push(action.payload)
-            blogAdapter.addOne(state, action.payload)
-        }).addCase(deleteBlog.fulfilled, (state, action) => {
-            // state.blogs = state.blogs.filter(blog => blog.id !== action.payload)
-            blogAdapter.removeOne(state, action.payload)
-        }).addCase(updateBlog.fulfilled, (state, action) => {
-            // const index = state.blogs.findIndex(blog => blog.id === action.payload.id)
-            // state.blogs[index] = action.payload
-            blogAdapter.updateOne(state, action.payload)
         })
+            //     .addCase(addNewBlog.fulfilled, (state, action) => {
+            //     // state.blogs.push(action.payload)
+            //     blogAdapter.addOne(state, action.payload)
+            // })
+            .addCase(addNewBlog.fulfilled, blogAdapter.addOne)
+            .addCase(deleteBlog.fulfilled, blogAdapter.removeOne)
+            .addCase(updateBlog.fulfilled, blogAdapter.updateOne)
+        //     .addCase(deleteBlog.fulfilled, (state, action) => {
+        //     // state.blogs = state.blogs.filter(blog => blog.id !== action.payload)
+        //     blogAdapter.removeOne(state, action.payload)
+        // }).addCase(updateBlog.fulfilled, (state, action) => {
+        //     // const index = state.blogs.findIndex(blog => blog.id === action.payload.id)
+        //     // state.blogs[index] = action.payload
+        //     blogAdapter.updateOne(state, action.payload)
+        // })
     }
 })
 
@@ -169,9 +176,9 @@ export const selectAuthorBlogs = createSelector(
 // export const selectById = (state, blogId) => state.blogs.blogs.find(blog => blog.id === blogId)
 
 export const {
-    blogAdded,
-    blogUpdated,
-    blogDeleted,
+    // blogAdded,
+    // blogUpdated,
+    // blogDeleted,
     reactionAdded,
 } = blogsSlice.actions;
 
