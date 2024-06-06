@@ -1,44 +1,47 @@
 import {useEffect, useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {selectById, updateBlog} from "../../features/blogs/blog.slice.js";
 import {useNavigate, useParams} from "react-router-dom";
-import {E_404} from "../error/E_404.jsx";
-import {selectUsers} from "../../features/users/user.slice.js";
+import {useEditBlogMutation, useGetBlogQuery, useGetUsersQuery} from "../../api/api.slice.js";
 
 export const EditBlog = () => {
 
     const [title, setTitle] = useState('')
-
     const [content, setContent] = useState('')
     const [userId, setUserId] = useState('')
 
-    const users = useSelector(selectUsers)
+    // const users = useSelector(selectUsers)
+    const {
+        data: users,
+    } = useGetUsersQuery()
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const nav = useNavigate();
 
     const {blogId} = useParams();
 
-    const blog = useSelector(state => selectById(state, blogId))
+    // const blog = useSelector(state => selectById(state, blogId))
+    const {
+        data: blog,
+        // isLoading,
+    } = useGetBlogQuery(blogId)
 
-    if (!blog) {
-        return <E_404/>
-    }
+    const [updateBlog, {isLoading}] = useEditBlogMutation()
+
+    // if (!blog) {
+    //     return <E_404/>
+    // }
 
     useEffect(() => {
         setTitle(blog.title)
         setContent(blog.content)
         setUserId(blog.user_id)
     }, [blog]);
-
-
-    const handleSubmit = () => {
+    const handleSubmit = async () => {
         // console.log(title, content)
         if (title && content && userId) {
             // dispatch action with payload
             const payload = {
-                id: blog.id,
+                id: blogId,
                 title,
                 content,
                 userId,
@@ -51,7 +54,8 @@ export const EditBlog = () => {
                     eyes: blog.eyes
                 }
             }
-            dispatch(updateBlog(payload))
+            // dispatch(updateBlog(payload))
+            await updateBlog(payload)
             setTitle('')
             setContent('')
             setUserId('')

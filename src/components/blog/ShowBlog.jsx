@@ -1,5 +1,4 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {E_404} from "../error/E_404.jsx";
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "../user/AuthorName.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
@@ -382,9 +381,9 @@ export const ShowBlog = () => {
 
     // const blog = useSelector(state => selectById(state, blogId));
 
-    if (!blog) {
-        return <E_404/>
-    }
+    // if (!blog) {
+    //     return <E_404/>
+    // }
 
     let content;
 
