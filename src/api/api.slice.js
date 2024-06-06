@@ -6,9 +6,13 @@ export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:9000",
     }),
+    tagTypes: [
+        "blog"
+    ],
     endpoints: builder => ({
         getBlogs: builder.query({
-            query: () => "/blogs"
+            query: () => "/blogs",
+            providesTags: ["blog"], // invalid cache for refetch blogs -> for query
         }),
         getBlog: builder.query({
             query: (blogId) => `/blogs/${blogId}`
@@ -18,7 +22,8 @@ export const apiSlice = createApi({
                 url: '/blogs',
                 method: 'POST',
                 body: blog
-            })
+            }),
+            invalidatesTags: ["blog"] // for mutation
         })
     })
 })
