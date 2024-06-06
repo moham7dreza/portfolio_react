@@ -6,11 +6,11 @@ export const apiSlice = createApi({
     baseQuery: fetchBaseQuery({
         baseUrl: "http://localhost:9000",
     }),
-    endpoints: builder => {
-        builder.query({
+    endpoints: builder => ({
+        getBlogs: builder.query({
             query: () => "/blogs"
         })
-    }
+    })
 })
 
 export const {
