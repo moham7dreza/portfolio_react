@@ -1,11 +1,10 @@
-import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate} from "react-router-dom";
-import {fetchBlogs, selectBlogs, selectError, selectStatus} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "../user/AuthorName.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
-import {memo, useEffect} from "react";
+import {useMemo} from "react";
 import {Spinner} from "../Spinner.jsx";
+import {useGetBlogsQuery} from "../../api/api.slice.js";
 
 let Blog = ({blog}) => {
     return (
@@ -28,39 +27,49 @@ let Blog = ({blog}) => {
         </div>
     )
 }
-// when input param changed then rerender
-Blog = memo(Blog)
 
 const ListBlog = () => {
+    const {
+        data: blogs = [], // if data is undefined then return empty array
+        isLoading,
+        isSuccess,
+        isError,
+        // isFetching,
+        error
+    } = useGetBlogsQuery()
 
-    let blogs = useSelector(selectBlogs)
-    const blogsStatus = useSelector(selectStatus)
-    const blogsError = useSelector(selectError)
+    // let blogs = useSelector(selectBlogs)
+    // const blogsStatus = useSelector(selectStatus)
+    // const blogsError = useSelector(selectError)
 
     const nav = useNavigate();
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
-    useEffect(() => {
-        console.log(blogsStatus)
-        // only one time need to fetch blogs
-        if (blogsStatus === 'idle') {
-            dispatch(fetchBlogs())
-        }
-    }, [blogsStatus, dispatch]);
+    // useEffect(() => {
+    //     console.log(blogsStatus)
+    //     // only one time need to fetch blogs
+    //     if (blogsStatus === 'idle') {
+    //         dispatch(fetchBlogs())
+    //     }
+    // }, [blogsStatus, dispatch]);
+
+    const sortedBlogs = useMemo(() => {
+        return blogs.slice().sort((a, b) => b.date.localeCompare(a.date))
+    }, [blogs]);
 
     let content;
 
-    if (blogsStatus === 'loading') {
+    if (isLoading) {
         content = <Spinner/>
-    } else if (blogsStatus === 'completed') {
+    } else if (isSuccess) {
         // sort blogs order by date ascending
-        blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));
+        // blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));
 
-        content = blogs.map((blog) => (
+        content = sortedBlogs.map((blog) => (
             <Blog key={blog.id} blog={blog}/>
         ))
-    } else if (blogsStatus === 'failed') {
-        content = blogsError
+    } else if (isError) {
+        content = error
     }
 
     return (
