@@ -1,30 +1,12 @@
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {E_404} from "../error/E_404.jsx";
-import {deleteBlog, selectById} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "../user/AuthorName.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
+import {useGetBlogQuery} from "../../api/api.slice.js";
+import {Spinner} from "../Spinner.jsx";
 
-export const ShowBlog = () => {
-    // exact name defined in routes file
-    const {blogId} = useParams();
-
-    const dispatch = useDispatch();
-
-    const blog = useSelector(state => selectById(state, blogId));
-
-    if (!blog) {
-        return <E_404/>
-    }
-
-    const nav = useNavigate();
-
-    const handleDelete = () => {
-        dispatch(deleteBlog(blog.id))
-        nav('/')
-    }
-
+const Blog = ({blog}) => {
     return (
         <>
             {/*<!-- Blog Article -->*/}
@@ -160,8 +142,9 @@ export const ShowBlog = () => {
                                       className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
                                     edit blog
                                 </Link>
-                                <button onClick={handleDelete}
-                                        className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
+                                <button
+                                    // onClick={handleDelete}
+                                    className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
                                     delete blog
                                 </button>
                             </div>
@@ -381,6 +364,46 @@ export const ShowBlog = () => {
                 </div>
             </div>
             {/*<!-- End Sticky Share Group -->*/}
+        </>
+    )
+}
+
+export const ShowBlog = () => {
+    // exact name defined in routes file
+    const {blogId} = useParams();
+
+    const {
+        data: blog,
+        isFetching,
+        isSuccess,
+    } = useGetBlogQuery(blogId)
+
+    // const dispatch = useDispatch();
+
+    // const blog = useSelector(state => selectById(state, blogId));
+
+    if (!blog) {
+        return <E_404/>
+    }
+
+    let content;
+
+    if (isFetching) {
+        content = <Spinner/>
+    } else if (isSuccess) {
+        content = <Blog blog={blog}/>
+    }
+
+    const nav = useNavigate();
+
+    const handleDelete = () => {
+        // dispatch(deleteBlog(blog.id))
+        nav('/')
+    }
+
+    return (
+        <>
+            {content}
         </>
     )
 }
