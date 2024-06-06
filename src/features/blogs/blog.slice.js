@@ -1,32 +1,15 @@
-import {createAsyncThunk, createEntityAdapter, createSelector, createSlice, current, nanoid} from "@reduxjs/toolkit";
+import {createAsyncThunk, createSelector, createSlice, current, nanoid} from "@reduxjs/toolkit";
 import * as BlogService from "../../services/BlogService.js";
-
-const blogAdapter = createEntityAdapter({
-    // sort ids array by blogs dates
-    sortComparer: (a, b) => b.date.localeCompare(a.date)
-})
-
-const initialState = blogAdapter.getInitialState({
-    status: "idle",
-    error: null,
-})
-// create a state like this
-// state = {
-//     ids: [],
-//     entities: {},
-//     status: "idle",
-//     error: null,
-// }
 
 // we create hardcoded data for initial state
 // we can not create class instances, not serialized values or functions
 // redux state and actions must be `plain js` like objects, arrays, ...
 // initial state must be object
-// const initialState = {
-//     blogs: [],
-//     status: "idle",
-//     error: null,
-// }
+const initialState = {
+    blogs: [],
+    status: "idle",
+    error: null,
+}
 
 export const fetchBlogs = createAsyncThunk(
     "blogs/fetchBlogs",
@@ -95,8 +78,7 @@ const blogsSlice = createSlice({
         blogUpdated: (state, action) => {
             const {id, title, content, userId} = action.payload;
 
-            // const blog = state.blogs.find(blog => blog.id === id);
-            const blog = state.entities[id];
+            const blog = state.blogs.find(blog => blog.id === id);
 
             if (blog) {
                 blog.title = title;
@@ -117,8 +99,7 @@ const blogsSlice = createSlice({
         reactionAdded: (state, action) => {
             const {id, reaction} = action.payload;
 
-            // const blog = state.blogs.find(blog => blog.id === id);
-            const blog = state.entities[id];
+            const blog = state.blogs.find(blog => blog.id === id);
 
             if (blog) {
                 blog.reactions[reaction]++;
@@ -130,34 +111,24 @@ const blogsSlice = createSlice({
             state.status = 'loading'
         }).addCase(fetchBlogs.fulfilled, (state, action) => {
             state.status = 'completed'
-            // state.blogs = action.payload
-            blogAdapter.upsertMany(state, action.payload)
+            state.blogs = action.payload
         }).addCase(fetchBlogs.rejected, (state, action) => {
             state.status = 'failed'
             state.error = action.error.message
         }).addCase(addNewBlog.fulfilled, (state, action) => {
-            // state.blogs.push(action.payload)
-            blogAdapter.addOne(state, action.payload)
+            state.blogs.push(action.payload)
         }).addCase(deleteBlog.fulfilled, (state, action) => {
-            // state.blogs = state.blogs.filter(blog => blog.id !== action.payload)
-            blogAdapter.removeOne(state, action.payload)
+            state.blogs = state.blogs.filter(blog => blog.id !== action.payload)
         }).addCase(updateBlog.fulfilled, (state, action) => {
-            // const index = state.blogs.findIndex(blog => blog.id === action.payload.id)
-            // state.blogs[index] = action.payload
-            blogAdapter.updateOne(state, action.payload)
+            const index = state.blogs.findIndex(blog => blog.id === action.payload.id)
+            state.blogs[index] = action.payload
         })
     }
 })
 
-export const {
-    selectAll: selectBlogs,
-    selectById,
-    selectIds,
-} = blogAdapter.getSelectors(state => state.blogs)
-
 // selectors
 //                                        slice name
-// export const selectBlogs = state => state.blogs.blogs;
+export const selectBlogs = state => state.blogs.blogs;
 export const selectStatus = state => state.blogs.status;
 export const selectError = state => state.blogs.error;
 export const selectAuthorBlogs = createSelector(
@@ -166,7 +137,7 @@ export const selectAuthorBlogs = createSelector(
 )
 //                                              key in state
 
-// export const selectById = (state, blogId) => state.blogs.blogs.find(blog => blog.id === blogId)
+export const selectById = (state, blogId) => state.blogs.blogs.find(blog => blog.id === blogId)
 
 export const {
     blogAdded,
