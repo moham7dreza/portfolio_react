@@ -1,31 +1,35 @@
 import {useState} from "react";
-import {useDispatch, useSelector} from "react-redux";
-import {addNewBlog} from "../../features/blogs/blog.slice.js";
+import {useSelector} from "react-redux";
 import {useNavigate} from "react-router-dom";
 import {selectUsers} from "../../features/users/user.slice.js";
 import {nanoid} from "@reduxjs/toolkit";
+import {useAddNewBlogMutation} from "../../api/api.slice.js";
 
 export const CreateBlog = () => {
 
     const [title, setTitle] = useState('')
     const [content, setContent] = useState('')
     const [userId, setUserId] = useState('')
-    const [requestStatus, setRequestStatus] = useState('idle')
+    // const [requestStatus, setRequestStatus] = useState('idle')
+
+    //     function which can dispatch and second arg is bool methods
+    const [addNewBlog, {isLoading}] = useAddNewBlogMutation()
 
     const users = useSelector(selectUsers)
 
-    const dispatch = useDispatch();
+    // const dispatch = useDispatch();
 
     const nav = useNavigate();
 
     // simple validation
-    const canSave = [title, content, userId].every(Boolean) && requestStatus === 'idle'
+    const canSave = [title, content, userId].every(Boolean) && !isLoading
+    // && requestStatus === 'idle'
 
     const handleSubmit = async () => {
         // console.log(title, content)
         if (canSave) {
             try {
-                setRequestStatus('pending')
+                // setRequestStatus('pending')
                 // dispatch action with payload
                 const payload = {
                     id: nanoid(),
@@ -41,7 +45,9 @@ export const CreateBlog = () => {
                         eyes: 0
                     }
                 }
-                await dispatch(addNewBlog(payload));
+                // await dispatch(addNewBlog(payload));
+                // unwrap : force code to return promise and use await before it
+                await addNewBlog(payload).unwrap();
                 setTitle('')
                 setContent('')
                 setUserId('')
@@ -50,7 +56,7 @@ export const CreateBlog = () => {
                 console.error('failed to add new blog', e)
             } finally {
                 // finally run in all cases
-                setRequestStatus('idle')
+                // setRequestStatus('idle')
             }
         }
     }
