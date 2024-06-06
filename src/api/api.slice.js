@@ -24,6 +24,17 @@ export const apiSlice = createApi({
                 body: blog
             }),
             invalidatesTags: ["blog"] // for mutation
+        }),
+        editBlog: builder.mutation({
+            query: blog => ({
+                url: `/blogs/${blog.id}`,
+                method: 'PUT',
+                body: blog
+            }),
+            invalidatesTags: ['blogs']
+        }),
+        getUsers: builder.query({
+            query: () => "/users",
         })
     })
 })
@@ -31,5 +42,7 @@ export const apiSlice = createApi({
 export const {
     useGetBlogsQuery,
     useGetBlogQuery,
-    useAddNewBlogMutation
+    useAddNewBlogMutation,
+    useEditBlogMutation,
+    useGetUsersQuery,
 } = apiSlice
