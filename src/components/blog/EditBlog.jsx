@@ -10,7 +10,7 @@ export const EditBlog = () => {
 
     // const users = useSelector(selectUsers)
     const {
-        data: users,
+        data: users = [],
     } = useGetUsersQuery()
 
     // const dispatch = useDispatch();
