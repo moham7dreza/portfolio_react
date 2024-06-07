@@ -1,5 +1,6 @@
-import {createAsyncThunk, createEntityAdapter, createSlice, nanoid} from "@reduxjs/toolkit";
+import {createAsyncThunk, createEntityAdapter, createSelector, createSlice, nanoid} from "@reduxjs/toolkit";
 import * as UserService from "../../services/UserService.js";
+import {apiSlice} from "../../api/api.slice.js";
 
 const userAdapter = createEntityAdapter()
 
@@ -7,7 +8,7 @@ const initialState = userAdapter.getInitialState()
 
 const usersSlice = createSlice({
     name: 'users',
-    initialState,
+    initialState: [],
     reducers: {
         addUser: (state, action) => {
             state.push({
@@ -37,10 +38,10 @@ const usersSlice = createSlice({
 //
 // export const selectById = (state, userId) => state.users.find(user => user.id === userId)
 
-export const {
-    selectAll: selectUsers,
-    selectById
-} = userAdapter.getSelectors(state => state.users)
+// export const {
+//     selectAll: selectUsers,
+//     selectById
+// } = userAdapter.getSelectors(state => state.users)
 
 export default usersSlice.reducer;
 
@@ -74,4 +75,17 @@ export const deleteUser = createAsyncThunk(
         await UserService.destroy(id);
         return id;
     }
+)
+
+
+export const selectUsersResult = apiSlice.endpoints.getUsers.select;
+
+export const selectUsers = createSelector(
+    [selectUsersResult],
+    result => result?.data ?? [],
+)
+
+export const selectById = createSelector(
+    [selectUsers, (state, userId) => userId],
+    (users, userId) => users.find(user => user.id === userId),
 )

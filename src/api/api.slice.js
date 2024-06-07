@@ -61,6 +61,14 @@ export const apiSlice = createApi({
                     id
                 }))
             ]
+        }),
+        storeUser: builder.mutation({
+            query: user => ({
+                url: `/users`,
+                method: 'POST',
+                body: user
+            }),
+            invalidatesTags: ["user"]
         })
     })
 })
@@ -70,5 +78,6 @@ export const {
     useGetBlogQuery,
     useAddNewBlogMutation,
     useEditBlogMutation,
-    useGetUsersQuery,
+    // useGetUsersQuery,
+    useStoreUserMutation,
 } = apiSlice
