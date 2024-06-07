@@ -1,11 +1,11 @@
-import {useDispatch, useSelector} from "react-redux";
+import {useSelector} from "react-redux";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "./AuthorName.jsx";
 import {ReactionButtons} from "../blog/ReactionButtons.jsx";
-import {useEffect, useMemo} from "react";
+import {useMemo} from "react";
 import {Spinner} from "../Spinner.jsx";
-import {selectById} from "../../features/users/user.slice.js";
+import {selectById, useDeleteUserMutation} from "../../features/users/user.slice.js";
 import {createSelector} from "@reduxjs/toolkit";
 import {useGetBlogsQuery} from "../../api/api.slice.js";
 
@@ -50,7 +50,14 @@ const AuthorListBlog = () => {
         )
     }, []);
 
-    let {blogs} = useGetBlogsQuery(undefined, {
+    let {
+        blogs,
+        isLoading,
+        isSuccess,
+        isError,
+        // isFetching,
+        error,
+    } = useGetBlogsQuery(undefined, {
         selectFromResult: result => ({
             // we can not change result because it stays in redux store
             ...result,
@@ -58,30 +65,20 @@ const AuthorListBlog = () => {
         })
     })
 
+    const [deleteAuthor] = useDeleteUserMutation()
+
     // let blogs = useSelector(state => selectAuthorBlogs(state, authorId))
 
     // sort blogs order by date ascending
     blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));
 
-    const blogsStatus = useSelector(selectStatus)
-    const blogsError = useSelector(selectError)
-
     const nav = useNavigate();
-    const dispatch = useDispatch();
-
-    useEffect(() => {
-        console.log(blogsStatus)
-        // only one time need to fetch blogs
-        if (blogsStatus === 'idle') {
-            dispatch(fetchBlogs())
-        }
-    }, [blogsStatus, dispatch]);
 
     let content;
 
-    if (blogsStatus === 'loading') {
+    if (isLoading) {
         content = <Spinner/>
-    } else if (blogsStatus === 'completed') {
+    } else if (isSuccess) {
         if (blogs.length > 0) {
             content = <Blogs blogs={blogs}/>
         } else {
@@ -91,12 +88,12 @@ const AuthorListBlog = () => {
                 </h2>
             )
         }
-    } else if (blogsStatus === 'failed') {
-        content = blogsError
+    } else if (isError) {
+        content = error
     }
 
-    const handleDelete = () => {
-        dispatch(deleteUser(author.id))
+    const handleDelete = async (id) => {
+        await deleteAuthor(id)
         nav('/blogs/authors')
     }
 
@@ -116,7 +113,7 @@ const AuthorListBlog = () => {
                             onClick={() => nav('/blogs/create')}>
                             create new blog
                         </button>
-                        <button onClick={handleDelete}
+                        <button onClick={() => handleDelete(authorId)}
                                 className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
                             delete author
                         </button>
