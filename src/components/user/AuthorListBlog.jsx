@@ -1,12 +1,14 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {fetchBlogs, selectAuthorBlogs, selectError, selectStatus} from "../../features/blogs/blog.slice.js";
+import {fetchBlogs, selectError, selectStatus} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "./AuthorName.jsx";
 import {ReactionButtons} from "../blog/ReactionButtons.jsx";
-import {useEffect} from "react";
+import {useEffect, useMemo} from "react";
 import {Spinner} from "../Spinner.jsx";
 import {deleteUser, selectById} from "../../features/users/user.slice.js";
+import {createSelector} from "@reduxjs/toolkit";
+import {useGetBlogsQuery} from "../../api/api.slice.js";
 
 const Blogs = ({blogs}) => {
     return (
@@ -41,7 +43,23 @@ const AuthorListBlog = () => {
     const {authorId} = useParams();
     const author = useSelector(state => selectById(state, authorId))
 
-    let blogs = useSelector(state => selectAuthorBlogs(state, authorId))
+    // return author blogs which memoized(render limited) with selector
+    const selectUserBlogs = useMemo(() => {
+        return createSelector(
+            [response => response.data, (response, userId) => userId],
+            (data, userId) => data?.filter(blog => blog.user_id === userId) ?? []
+        )
+    }, []);
+
+    let {blogs} = useGetBlogsQuery(undefined, {
+        selectFromResult: result => ({
+            // we can not change result because it stays in redux store
+            ...result,
+            blogs: selectUserBlogs(result, authorId)
+        })
+    })
+
+    // let blogs = useSelector(state => selectAuthorBlogs(state, authorId))
 
     // sort blogs order by date ascending
     blogs = blogs.slice().sort((a, b) => b.date.localeCompare(a.date));
