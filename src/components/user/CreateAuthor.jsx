@@ -1,40 +1,43 @@
 import {useState} from "react";
-import {useDispatch} from "react-redux";
 import {useNavigate} from "react-router-dom";
-import {createUser} from "../../features/users/user.slice.js";
 import {nanoid} from "@reduxjs/toolkit";
+import {useStoreUserMutation} from "../../api/api.slice.js";
 
 export const CreateAuthor = () => {
 
     const [title, setTitle] = useState('')
 
-    const [requestStatus, setRequestStatus] = useState('idle')
+    const [storeAuthor, {isLoading}] = useStoreUserMutation()
 
-    const dispatch = useDispatch();
+    // const [requestStatus, setRequestStatus] = useState('idle')
+
+    // const dispatch = useDispatch();
 
     const nav = useNavigate();
 
     // simple validation
-    const canSave = [title].every(Boolean) && requestStatus === 'idle'
+    const canSave = [title].every(Boolean) && !isLoading
+    // && requestStatus === 'idle'
 
     const handleSubmit = async () => {
         // console.log(title, content)
         if (canSave) {
             try {
-                setRequestStatus('pending')
+                // setRequestStatus('pending')
                 // dispatch action with payload
                 const payload = {
                     id: nanoid(),
                     name: title,
                 }
-                await dispatch(createUser(payload));
+                // await dispatch(createUser(payload));
+                await storeAuthor(payload)
                 setTitle('')
                 nav('/blogs/authors')
             } catch (e) {
                 console.error('failed to add new user', e)
             } finally {
                 // finally run in all cases
-                setRequestStatus('idle')
+                // setRequestStatus('idle')
             }
         }
     }

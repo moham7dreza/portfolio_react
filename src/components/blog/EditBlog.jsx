@@ -1,6 +1,8 @@
 import {useEffect, useState} from "react";
 import {useNavigate, useParams} from "react-router-dom";
-import {useEditBlogMutation, useGetBlogQuery, useGetUsersQuery} from "../../api/api.slice.js";
+import {useEditBlogMutation, useGetBlogQuery} from "../../api/api.slice.js";
+import {useSelector} from "react-redux";
+import {selectUsers} from "../../features/users/user.slice.js";
 
 export const EditBlog = () => {
 
@@ -8,10 +10,10 @@ export const EditBlog = () => {
     const [content, setContent] = useState('')
     const [userId, setUserId] = useState('')
 
-    // const users = useSelector(selectUsers)
-    const {
-        data: users = [],
-    } = useGetUsersQuery()
+    const users = useSelector(selectUsers)
+    // const {
+    //     data: users = [],
+    // } = useGetUsersQuery()
 
     // const dispatch = useDispatch();
 
