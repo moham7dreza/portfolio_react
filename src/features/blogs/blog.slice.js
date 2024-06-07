@@ -1,5 +1,6 @@
 import {createAsyncThunk, createEntityAdapter, createSelector, createSlice, current, nanoid} from "@reduxjs/toolkit";
 import * as BlogService from "../../services/BlogService.js";
+import {apiSlice} from "../../api/api.slice.js";
 
 // adapter give many reducer functions to work with normalized state
 const blogAdapter = createEntityAdapter({
@@ -156,21 +157,21 @@ const blogsSlice = createSlice({
     }
 })
 
-export const {
-    selectAll: selectBlogs,
-    selectById,
-    selectIds,
-} = blogAdapter.getSelectors(state => state.blogs)
+// export const {
+//     selectAll: selectBlogs,
+//     selectById,
+//     selectIds,
+// } = blogAdapter.getSelectors(state => state.blogs)
 
 // selectors
 //                                        slice name
 // export const selectBlogs = state => state.blogs.blogs;
 export const selectStatus = state => state.blogs.status;
 export const selectError = state => state.blogs.error;
-export const selectAuthorBlogs = createSelector(
-    [selectBlogs, (state, userId) => userId],
-    (blogs, userId) => blogs.filter(blog => blog.user_id === userId)
-)
+// export const selectAuthorBlogs = createSelector(
+//     [selectBlogs, (state, userId) => userId],
+//     (blogs, userId) => blogs.filter(blog => blog.user_id === userId)
+// )
 //                                              key in state
 
 // export const selectById = (state, blogId) => state.blogs.blogs.find(blog => blog.id === blogId)
@@ -183,3 +184,10 @@ export const {
 } = blogsSlice.actions;
 
 export default blogsSlice.reducer;
+
+export const selectBlogsResult = apiSlice.endpoints.getBlogs.select
+
+export const selectAuthorBlogs = createSelector(
+    [selectBlogsResult, (state, userId) => userId],
+    (blogs, userId) => blogs.filter(blog => blog.user_id === userId)
+)
