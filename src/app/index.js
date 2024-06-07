@@ -1,6 +1,6 @@
 import {configureStore} from "@reduxjs/toolkit";
 import blogsReducer from "../features/blogs/blog.slice.js";
-import usersReducer from "../features/users/user.slice.js";
+import usersReducer, {extendedApiSlice} from "../features/users/user.slice.js";
 import {apiSlice} from "../api/api.slice.js";
 
 export const store = configureStore({
@@ -14,4 +14,4 @@ export const store = configureStore({
 })
 
 // store.dispatch(fetchUsers())
-store.dispatch(apiSlice.endpoints.getUsers.initiate())
+store.dispatch(extendedApiSlice.endpoints.getUsers.initiate())
