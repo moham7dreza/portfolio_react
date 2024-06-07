@@ -2,10 +2,10 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "../user/AuthorName.jsx";
 import {ReactionButtons} from "./ReactionButtons.jsx";
-import {useGetBlogQuery} from "../../api/api.slice.js";
+import {useDeleteBlogMutation, useGetBlogQuery} from "../../api/api.slice.js";
 import {Spinner} from "../Spinner.jsx";
 
-const Blog = ({blog}) => {
+const Blog = ({blog, handleDelete}) => {
     return (
         <>
             {/*<!-- Blog Article -->*/}
@@ -142,7 +142,7 @@ const Blog = ({blog}) => {
                                     edit blog
                                 </Link>
                                 <button
-                                    // onClick={handleDelete}
+                                    onClick={handleDelete}
                                     className="w-full sm:w-auto mt-3 py-3 px-4 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-white text-gray-800 hover:bg-gray-200 disabled:opacity-50 disabled:pointer-events-none">
                                     delete blog
                                 </button>
@@ -385,20 +385,24 @@ export const ShowBlog = () => {
     //     return <E_404/>
     // }
 
+    const nav = useNavigate();
+
+    const [deleteBlog, {isLoading}] = useDeleteBlogMutation()
+
+    const handleDelete = async () => {
+        await deleteBlog(blogId)
+        nav('/')
+    }
+
     let content;
 
     if (isFetching) {
         content = <Spinner/>
     } else if (isSuccess) {
-        content = <Blog blog={blog}/>
+        content = <Blog blog={blog} handleDelete={handleDelete}/>
     }
 
-    const nav = useNavigate();
 
-    const handleDelete = () => {
-        // dispatch(deleteBlog(blog.id))
-        nav('/')
-    }
 
     return (
         <>

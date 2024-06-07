@@ -1,12 +1,11 @@
 import {useDispatch, useSelector} from "react-redux";
 import {Link, useNavigate, useParams} from "react-router-dom";
-import {fetchBlogs, selectError, selectStatus} from "../../features/blogs/blog.slice.js";
 import {ShowTime} from "../ShowTime.jsx";
 import {AuthorName} from "./AuthorName.jsx";
 import {ReactionButtons} from "../blog/ReactionButtons.jsx";
 import {useEffect, useMemo} from "react";
 import {Spinner} from "../Spinner.jsx";
-import {deleteUser, selectById} from "../../features/users/user.slice.js";
+import {selectById} from "../../features/users/user.slice.js";
 import {createSelector} from "@reduxjs/toolkit";
 import {useGetBlogsQuery} from "../../api/api.slice.js";
 
