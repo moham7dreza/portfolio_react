@@ -77,8 +77,35 @@ export const deleteUser = createAsyncThunk(
     }
 )
 
+export const extendedApiSlice = apiSlice.injectEndpoints({
+    endpoints: builder => ({
+        getUsers: builder.query({
+            query: () => "/users",
+            providesTags: (result, error, arg) => [
+                "user",
+                ...result.map(({id}) => ({
+                    type: 'user',
+                    id
+                }))
+            ]
+        }),
+        storeUser: builder.mutation({
+            query: user => ({
+                url: `/users`,
+                method: 'POST',
+                body: user
+            }),
+            invalidatesTags: ["user"]
+        })
+    })
+})
 
-export const selectUsersResult = apiSlice.endpoints.getUsers.select;
+export const {
+    useGetUsersQuery,
+    useStoreUserMutation,
+} = extendedApiSlice
+
+export const selectUsersResult = extendedApiSlice.endpoints.getUsers.select;
 
 export const selectUsers = createSelector(
     [selectUsersResult],

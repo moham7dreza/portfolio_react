@@ -1,7 +1,7 @@
 import {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {nanoid} from "@reduxjs/toolkit";
-import {useStoreUserMutation} from "../../api/api.slice.js";
+import {useStoreUserMutation} from "../../features/users/user.slice.js";
 
 export const CreateAuthor = () => {
 

@@ -6,7 +6,7 @@ import {useMemo} from "react";
 import {Spinner} from "../Spinner.jsx";
 import {useGetBlogsQuery} from "../../api/api.slice.js";
 
-let Blog = ({blog}) => {
+const Blog = ({blog}) => {
     return (
         <div>
             {/*<!-- Card -->*/}
