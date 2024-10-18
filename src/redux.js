@@ -80,3 +80,35 @@ console.log(currentValue)
 // we click on button -> action is dispatched -> received by reducer
 // -> reacted to action depends on type -> make a copy of state -> update value on copy
 // -> new value returned -> saved in store
+
+// example
+// 1. action creator
+const decrement = number => {
+    return {
+        type: 'counter/decrement',
+        payload: number,
+    }
+}
+// 2. init state
+const initialState2 = {
+    value: 1,
+}
+// 3. reducer
+export const Reducer = (state = initialState2, action) => {
+    switch (action.type) {
+        case 'counter/decrement':
+            return {
+                value: {...state}.value -= action.payload
+            }
+        default:
+            return state
+    }
+}
+// 4. store
+export const store2 = configureStore({
+    reducer: Reducer,
+})
+
+// 5. selector
+const valueSelect = state => state.value;
+export const currentVal = valueSelect(store2.getState());
