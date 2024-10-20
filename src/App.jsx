@@ -10,6 +10,7 @@ function App() {
     const [incrementAmount, setIncrementAmount] = useState(0)
     // use custom selector for get counter slice from state
     const count = useSelector(selectCount)
+    const user = useSelector(state => state.user.value)
     const dispatch = useDispatch()
 
     return (
